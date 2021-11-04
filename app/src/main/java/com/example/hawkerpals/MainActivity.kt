@@ -59,18 +59,19 @@ class MainActivity : AppCompatActivity() {
             if (onboardingViewPager.currentItem + 1 < onboardingItemsAdapter.itemCount){
                 onboardingViewPager.currentItem += 1
             }else{
-                navigateToHomeActivity()
+                navigateToLogIn()
             }
         }
         findViewById<TextView>(R.id.textSkip).setOnClickListener{
-            navigateToHomeActivity()
+            navigateToLogIn()
         }
         findViewById<MaterialButton>(R.id.buttonGetStarted).setOnClickListener{
-            navigateToHomeActivity()
+            navigateToLogIn()
         }
     }
-    private fun navigateToHomeActivity(){
-        startActivity(Intent(applicationContext, HomeActivity::class.java))
+    private fun navigateToLogIn(){
+        val intent = Intent(this, LoginActivity::class.java)
+        startActivity(intent)
         finish()
     }
 

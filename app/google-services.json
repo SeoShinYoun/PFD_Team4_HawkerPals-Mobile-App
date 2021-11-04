@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "47322547959",
+    "project_id": "hawkerpals-de16f",
+    "storage_bucket": "hawkerpals-de16f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:47322547959:android:ddaa5978653a8ca01375f2",
+        "android_client_info": {
+          "package_name": "com.example.hawkerpals"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "47322547959-aj315tmik40ea8srla9l489b36h06frn.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.hawkerpals",
+            "certificate_hash": "7722aeb906a8575aa79b044f4d6f743ea7460f7f"
+          }
+        },
+        {
+          "client_id": "47322547959-t2he6325j25vht9t1hr7ctn22k9l5kf2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAcNDqPPN6VSr7GAM-s0PF0CgkClVyZMHY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "47322547959-t2he6325j25vht9t1hr7ctn22k9l5kf2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
