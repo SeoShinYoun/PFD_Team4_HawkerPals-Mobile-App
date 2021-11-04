@@ -29,12 +29,12 @@ class MainActivity : AppCompatActivity() {
             listOf(
                 OnboardingItem(
                     onboardingImage = R.drawable.task,
-                    title = "Connect with other hawker stalls",
+                    title = "Connect with other hawker stall owners",
                     description = "Publicise & promote your dishes to other businesses while getting to know other hawkers better"
                 ),
                 OnboardingItem(
                     onboardingImage = R.drawable.reminder,
-                    title = "Diversify your income stream with B2B Sales",
+                    title = "Income diversification with B2B Sales",
                     description = "Buy & sell soon-to-be expired ingredients from fellow hawkers"
                 ),
                 OnboardingItem(
