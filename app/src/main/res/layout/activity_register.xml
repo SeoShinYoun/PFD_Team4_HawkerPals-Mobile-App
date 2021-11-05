@@ -10,14 +10,18 @@
 
     <EditText
         android:id="@+id/passwordInput2"
-        android:layout_width="320dp"
-        android:layout_height="55dp"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="50dp"
         android:layout_marginTop="44dp"
+        android:layout_marginEnd="50dp"
         android:background="@drawable/rounded_edittext_register_login"
+        android:drawableLeft="@drawable/password"
+        android:drawablePadding="10dp"
         android:ems="10"
         android:hint="Password"
         android:inputType="textPassword"
-        android:paddingLeft="45dp"
+        android:paddingLeft="15dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
@@ -25,9 +29,11 @@
 
     <Button
         android:id="@+id/registerButton"
-        android:layout_width="139dp"
-        android:layout_height="47dp"
-        android:layout_marginTop="48dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginEnd="50dp"
         android:background="@drawable/rounded_edittext_register_login"
         android:text="Sign Up"
         android:textStyle="bold"
@@ -38,28 +44,33 @@
 
     <TextView
         android:id="@+id/SignUptxt"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="144dp"
+        android:layout_marginStart="50dp"
         android:text="Let's get started!"
+        android:textAlignment="viewStart"
         android:textColor="#FFFFFF"
         android:textSize="34sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.484"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
     <EditText
         android:id="@+id/emailInput2"
-        android:layout_width="320dp"
-        android:layout_height="55dp"
-        android:layout_marginTop="180dp"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginEnd="50dp"
         android:background="@drawable/rounded_edittext_register_login"
+        android:drawableLeft="@drawable/email"
+        android:drawablePadding="10dp"
         android:ems="10"
         android:hint="Email"
         android:inputType="textEmailAddress"
-        android:paddingLeft="45dp"
+        android:paddingLeft="15dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
@@ -78,40 +89,13 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
-        android:id="@+id/userID"
-        android:layout_width="27dp"
-        android:layout_height="26dp"
-        android:layout_centerVertical="true"
-        android:src="@drawable/email"
-        app:layout_constraintBottom_toBottomOf="@+id/emailInput2"
-        app:layout_constraintEnd_toEndOf="@+id/emailInput2"
-        app:layout_constraintHorizontal_bias="0.037"
-        app:layout_constraintStart_toStartOf="@+id/emailInput2"
-        app:layout_constraintTop_toTopOf="@+id/emailInput2"  />
-
-    <ImageView
-        android:id="@+id/icon"
-        android:layout_width="42dp"
-        android:layout_height="30dp"
-        android:layout_centerVertical="true"
-        android:src="@drawable/password"
-        app:layout_constraintBottom_toBottomOf="@+id/passwordInput2"
-        app:layout_constraintEnd_toEndOf="@+id/passwordInput2"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/passwordInput2"
-        app:layout_constraintTop_toTopOf="@+id/passwordInput2"
-        app:layout_constraintVertical_bias="0.52" />
-
-    <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="425dp"
-        android:layout_height="189dp"
+        android:layout_width="0dp"
+        android:layout_height="173dp"
 
-        app:layout_constraintBottom_toTopOf="@+id/SignUptxt"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/applogo" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
