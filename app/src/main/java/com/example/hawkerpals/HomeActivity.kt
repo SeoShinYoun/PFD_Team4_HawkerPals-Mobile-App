@@ -26,10 +26,8 @@ class HomeActivity : AppCompatActivity() {
 
         logout.setOnClickListener{
             FirebaseAuth.getInstance().signOut()
-
             startActivity(Intent(this@HomeActivity, LoginActivity::class.java))
             finish()
         }
-
     }
 }
