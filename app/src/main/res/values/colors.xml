@@ -9,7 +9,7 @@
     <color name="white">#FFFFFFFF</color>
 
     <!-- Custom Colors -->
-    <color name = "custom_color_primary">#643AE7</color>
+    <color name = "custom_color_primary">#6D72FF</color>
     <color name = "custom_color_secondary">#FF8F00</color>
     <color name = "custom_color_secondary_light">#FFD299</color>
     <color name = "custom_color_background">#FFFFFF</color>

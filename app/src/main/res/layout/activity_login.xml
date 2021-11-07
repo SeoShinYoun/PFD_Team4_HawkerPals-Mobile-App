@@ -13,13 +13,15 @@
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_marginStart="50dp"
-        android:layout_marginTop="54dp"
+        android:layout_marginTop="52dp"
         android:layout_marginEnd="50dp"
         android:background="@drawable/rounded_edittext_register_login"
         android:text="Login"
         android:textStyle="bold"
+
         app:backgroundTint="@color/custom_color_secondary"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/passwordInput" />
 
@@ -56,7 +58,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/loginText" />
 
-
     <EditText
         android:id="@+id/passwordInput"
         android:layout_width="0dp"
@@ -71,7 +72,6 @@
         android:hint="Password"
         android:inputType="textPassword"
         android:paddingLeft="10dp"
-        android:textColor="#FFFFFF"
         app:layout_constraintBottom_toTopOf="@+id/loginBtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.494"
