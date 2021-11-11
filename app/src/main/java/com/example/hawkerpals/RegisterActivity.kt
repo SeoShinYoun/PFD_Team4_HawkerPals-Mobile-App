@@ -11,13 +11,16 @@ import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_register.*
 
 class RegisterActivity : AppCompatActivity() {
     lateinit var auth: FirebaseAuth
-    var databaseReference :  DatabaseReference? = null
+    lateinit var databaseReference :  DatabaseReference
     var database: FirebaseDatabase? = null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,6 +57,15 @@ class RegisterActivity : AppCompatActivity() {
                                 if (task.isSuccessful){
                                     val firebaseUser: FirebaseUser = task.result!!.user!!
 
+                                    //[START of writing to Firebase Realtime Database]
+                                    val db = Firebase.database("https://hawkerpals-de16f-default-rtdb.asia-southeast1.firebasedatabase.app/")
+                                    val dbRef = db.getReference("users")
+                                    val user = User(fullName = null,stallAddress = null, email = null,userType = null)
+                                    user.email = email
+                                    //After adding more input boxes(eg full name, userType, etc) to the registration screen, data can be assigned right after this line
+                                    dbRef.child(email.replace(".","DOT")).setValue(user)
+                                    //[END of writing to Firebase Realtime Database]
+
                                     Toast.makeText(
                                         this@RegisterActivity,
                                         "You have registered successfully",
@@ -67,6 +79,7 @@ class RegisterActivity : AppCompatActivity() {
                                     intent.putExtra("email_id",email)
                                     startActivity(intent)
                                     finish()
+
                                 }else{
                                     Toast.makeText(
                                         this@RegisterActivity,
