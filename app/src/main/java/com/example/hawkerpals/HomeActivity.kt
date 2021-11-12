@@ -17,6 +17,7 @@ import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.activity_home.*
+import kotlinx.android.synthetic.main.fragment_profile.*
 
 class HomeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,7 +47,10 @@ class HomeActivity : AppCompatActivity() {
             replace(R.id.fl_wrapper, fragment)
             commit()
         }
+
+
 }
+
 
 //        val user_ID = intent.getStringExtra("user_id")
 //        val email_ID = intent.getStringExtra("email_id")
@@ -54,8 +58,3 @@ class HomeActivity : AppCompatActivity() {
 //        userID.text = "User ID ::$user_ID"
 //        emailid.text = "Email ID::$email_ID"
 //
-//        logout.setOnClickListener{
-//            FirebaseAuth.getInstance().signOut()
-//            startActivity(Intent(this@HomeActivity, LoginActivity::class.java))
-//            finish()
-//        }
