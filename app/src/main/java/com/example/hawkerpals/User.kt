@@ -1,5 +1,5 @@
 package com.example.hawkerpals
 
-data class User(val fullName : String? = null, val stallAddress : String? = null, var email : String? = null, val userType : String? = null){
+data class User(var user_email : String? = null, var user_id : String? = null, var user_name : String? = null, val user_type : String? = null){
 
 }
