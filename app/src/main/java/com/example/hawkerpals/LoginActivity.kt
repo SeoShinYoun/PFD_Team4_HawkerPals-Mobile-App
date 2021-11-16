@@ -22,6 +22,9 @@ class LoginActivity : AppCompatActivity() {
         noAcc.setOnClickListener{
             startActivity(Intent(this@LoginActivity, RegisterActivity::class.java))
         }
+        forgetPassword.setOnClickListener{
+            startActivity(Intent(this@LoginActivity, ForgetPasswordActivity::class.java))
+        }
         loginBtn.setOnClickListener {
             when {
                 TextUtils.isEmpty(emailInput.text.toString().trim() { it <= ' '}) ->{
