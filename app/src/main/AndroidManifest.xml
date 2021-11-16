@@ -13,6 +13,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.HawkerPals">
         <activity
+            android:name=".TrendingChat"
+            android:exported="false" />
+        <activity
+            android:name=".GroupChatActivity"
+            android:exported="false" />
+        <activity
             android:name=".ForgetPasswordActivity"
             android:exported="false" />
         <activity

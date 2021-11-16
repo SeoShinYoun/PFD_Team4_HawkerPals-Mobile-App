@@ -1,5 +1,7 @@
 package com.example.hawkerpals
 
+import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -7,8 +9,9 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.auth.FirebaseAuth
 
-class RecyclerAdapter: RecyclerView.Adapter<RecyclerAdapter.ViewHolder>(){
+class RecyclerAdapter(val context: Context) : RecyclerView.Adapter<RecyclerAdapter.ViewHolder>(){
 
     private var titles = arrayOf("Telok Ayer Market", "Tiong Bahru Market", "Maxwell Food Centre", "Chinatown Complex",
         "Golden Mile Centre", "ABC Brickworks", "Bedok Food Centre", "Tekka Food Centre")
@@ -28,6 +31,12 @@ class RecyclerAdapter: RecyclerView.Adapter<RecyclerAdapter.ViewHolder>(){
         holder.itemTitle.text = titles[position]
         holder.itemDetail.text = details[position]
         holder.itemImage.setImageResource(images[position])
+        holder.itemView.setOnClickListener {
+            val intent = Intent(context,TrendingChat::class.java)
+            intent.putExtra("GroupName",titles[position])
+            intent.putExtra("uid",FirebaseAuth.getInstance().currentUser?.uid)
+            context.startActivity(intent)
+        }
 
     }
 

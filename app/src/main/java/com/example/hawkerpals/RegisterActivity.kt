@@ -40,7 +40,13 @@ class RegisterActivity : AppCompatActivity() {
                         Toast.LENGTH_SHORT
                     ).show()
                 }
-
+                TextUtils.isEmpty(userNameInput.text.toString().trim() { it <= ' '}) ->{
+                    Toast.makeText(
+                        this@RegisterActivity,
+                        "Please enter your password.",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
                 TextUtils.isEmpty(passwordInput2.text.toString().trim() { it <= ' '}) ->{
                     Toast.makeText(
                         this@RegisterActivity,
@@ -48,9 +54,12 @@ class RegisterActivity : AppCompatActivity() {
                         Toast.LENGTH_SHORT
                     ).show()
                 }
+
                 else ->{
                     val email: String = emailInput2.text.toString().trim() { it <= ' '}
                     val password: String = passwordInput2.text.toString().trim() { it <= ' '}
+                    val name: String = userNameInput.text.toString().trim() { it <= ' '}
+
 
                     FirebaseAuth.getInstance().createUserWithEmailAndPassword(email,password)
                         .addOnCompleteListener(
@@ -76,7 +85,9 @@ class RegisterActivity : AppCompatActivity() {
                                                 }
                                             }
                                         }
-                                        user.user_email = email //After adding more input boxes(eg full name, userType, etc) to the registration screen, data can be assigned right after this line
+                                        user.user_email = email
+                                        user.user_name = name
+                                        //After adding more input boxes(eg full name, userType, etc) to the registration screen, data can be assigned right after this line
                                         user.user_id = turnIntTo4Char(availableIDs.elementAt(0))
                                         userKey += user.user_id
                                         dbRef.child(userKey).setValue(user)
@@ -90,12 +101,14 @@ class RegisterActivity : AppCompatActivity() {
                                         "You have registered successfully",
                                         Toast.LENGTH_SHORT
                                     ).show()
+                                    //Make a toast to show login successfully
 
                                     val intent =
                                         Intent(this@RegisterActivity,HomeActivity::class.java)
                                     intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                                     intent.putExtra("user_id",firebaseUser.uid)
                                     intent.putExtra("email_id",email)
+                                    intent.putExtra("userName",name)
                                     startActivity(intent)
                                     finish()
 
@@ -127,4 +140,9 @@ class RegisterActivity : AppCompatActivity() {
         }
         return "NO ID"
     }
+
+//   private fun addUserToDB(name:String,email:String,uid:String){
+//       databaseReference = FirebaseDatabase.getInstance().getReference()
+//       databaseReference.child("user").child(uid).setValue(User(name,email,uid))
+//   }
 }
