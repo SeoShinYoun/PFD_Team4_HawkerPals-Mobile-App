@@ -16,7 +16,7 @@
             android:name=".TrendingChat"
             android:exported="false" />
         <activity
-            android:name=".GroupChatActivity"
+            android:name=".ResetPasswordActivity"
             android:exported="false" />
         <activity
             android:name=".ForgetPasswordActivity"

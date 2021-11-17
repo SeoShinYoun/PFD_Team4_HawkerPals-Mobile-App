@@ -13,6 +13,7 @@ import android.widget.Toast
 import com.example.hawkerpals.HomeActivity
 import com.example.hawkerpals.LoginActivity
 import com.example.hawkerpals.R
+import com.example.hawkerpals.ResetPasswordActivity
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.AuthResult
@@ -39,6 +40,13 @@ class ProfileFragment : Fragment() {
             val intent = Intent (getActivity(), LoginActivity::class.java)
             getActivity()?.startActivity(intent)
             FirebaseAuth.getInstance().signOut()
+        }
+
+        val resetPWbtn = v.findViewById<Button>(R.id.resetPw)
+        resetPWbtn.setOnClickListener {
+            val intent = Intent (getActivity(), ResetPasswordActivity::class.java)
+            getActivity()?.startActivity(intent)
+
         }
 
         return v

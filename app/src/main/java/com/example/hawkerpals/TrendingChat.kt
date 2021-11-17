@@ -66,6 +66,8 @@ class TrendingChat : AppCompatActivity() {
     messageRecyclerView.adapter = messageAdapter
 
     GroupName.setText(groupname)
+
+//    GroupName.setText(groupname)
     //logic for adding data to recycler view
     dbRef.child("chats").child(senderRoom!!).child("messages")
         .addValueEventListener(object: ValueEventListener {

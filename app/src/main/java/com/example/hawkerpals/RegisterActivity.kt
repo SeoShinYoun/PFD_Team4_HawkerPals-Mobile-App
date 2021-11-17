@@ -141,8 +141,8 @@ class RegisterActivity : AppCompatActivity() {
         return "NO ID"
     }
 
-//   private fun addUserToDB(name:String,email:String,uid:String){
-//       databaseReference = FirebaseDatabase.getInstance().getReference()
-//       databaseReference.child("user").child(uid).setValue(User(name,email,uid))
-//   }
+   private fun addUserToDB(name:String,email:String,uid:String){
+       databaseReference = FirebaseDatabase.getInstance().getReference()
+       databaseReference.child("user").child(uid).setValue(User(name,email,uid))
+   }
 }

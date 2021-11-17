@@ -2,6 +2,7 @@
 <androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginTop="12dp"
@@ -27,30 +28,30 @@
             android:id="@+id/item_image"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            card_view:layout_constraintTop_toTopOf="parent"
-            card_view:layout_constraintLeft_toLeftOf="parent"/>
+            android:visibility="gone"
+            card_view:layout_constraintLeft_toLeftOf="parent"
+            card_view:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/item_title"
             android:layout_width="236dp"
-            android:layout_height="39dp"
-            card_view:layout_constraintTop_toTopOf="parent"
-            card_view:layout_constraintLeft_toRightOf="@+id/item_image"
-            android:layout_marginStart="16dp"
+            android:layout_height="50dp"
             android:textColor="@color/white"
+            android:textSize="20sp"
             android:textStyle="bold"
-            android:textSize="20sp"/>
+            card_view:layout_constraintLeft_toRightOf="@+id/item_image"
+            card_view:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/item_detail"
             android:layout_width="236dp"
-            android:layout_height="16dp"
-            android:layout_marginStart="16dp"
+            android:layout_height="35dp"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:textColor="@color/white"
             android:textStyle="italic"
-            card_view:layout_constraintTop_toBottomOf="@+id/item_title"
-            card_view:layout_constraintLeft_toRightOf="@+id/item_image"/>
+            card_view:layout_constraintStart_toStartOf="parent"
+            card_view:layout_constraintTop_toBottomOf="@+id/item_title" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
