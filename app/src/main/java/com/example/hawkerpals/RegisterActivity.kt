@@ -127,7 +127,9 @@ class RegisterActivity : AppCompatActivity() {
                                     intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                                     intent.putExtra("user_id",firebaseUser.uid)
                                     intent.putExtra("email_id",email)
-                                    intent.putExtra("userName",name)
+                                    intent.putExtra("user_name",name)
+                                    intent.putExtra("vacinated",vaxxed)
+                                    intent.putExtra("user_type",type)
                                     startActivity(intent)
                                     finish()
 
