@@ -44,14 +44,23 @@
 
         <TextView
             android:id="@+id/item_detail"
-            android:layout_width="236dp"
-            android:layout_height="35dp"
+            android:layout_width="240dp"
+            android:layout_height="50dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:textColor="@color/white"
             android:textStyle="italic"
             card_view:layout_constraintStart_toStartOf="parent"
             card_view:layout_constraintTop_toBottomOf="@+id/item_title" />
+
+        <Button
+            android:id="@+id/chat"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Chat"
+            card_view:layout_constraintEnd_toEndOf="parent"
+            card_view:layout_constraintTop_toTopOf="parent" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

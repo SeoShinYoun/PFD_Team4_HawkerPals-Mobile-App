@@ -1,14 +1,17 @@
 package com.example.hawkerpals
 
+import android.app.PendingIntent.getActivity
 import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import com.example.hawkerpals.bottomnavbartutorial.fragments.HomeFragment
 import com.google.firebase.auth.FirebaseAuth
 
 //class RecyclerAdapter(val context: Context,val hawkerList: ArrayList<Hawkers>) : RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
@@ -96,7 +99,7 @@ import com.google.firebase.auth.FirebaseAuth
 //}
 
 
-class RecyclerAdapter(/*val context: Context,*/val hawkerList:ArrayList<Hawkers>) : RecyclerView.Adapter<RecyclerAdapter.ViewHolder>(){
+class RecyclerAdapter(val hawkerList:ArrayList<Hawkers>) : RecyclerView.Adapter<RecyclerAdapter.ViewHolder>(){
 
 //    private var titles = arrayOf("Telok Ayer Market", "Tiong Bahru Market", "Maxwell Food Centre", "Chinatown Complex",
 //        "Golden Mile Centre", "ABC Brickworks", "Bedok Food Centre", "Tekka Food Centre")
@@ -109,6 +112,14 @@ class RecyclerAdapter(/*val context: Context,*/val hawkerList:ArrayList<Hawkers>
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerAdapter.ViewHolder {
         val v = LayoutInflater.from(parent.context).inflate(R.layout.card_layout, parent, false)
+//        val btn = v.findViewById<Button>(R.id.chat)
+//        btn.setOnClickListener{
+//            val intent = Intent (v.context, TrendingChat::class.java)
+//            intent.putExtra("GroupName",hawkerList[])
+//            intent.putExtra("uid",FirebaseAuth.getInstance().currentUser?.uid)
+//            v.context?.startActivity(intent)
+//
+//        }
         return ViewHolder(v)
     }
 
@@ -116,13 +127,13 @@ class RecyclerAdapter(/*val context: Context,*/val hawkerList:ArrayList<Hawkers>
        val currentList = hawkerList[position]
         holder.itemTitle.text = currentList.hawker_name
         holder.itemDetail.text = currentList.hawker_address
+        holder.Chatbtn.setOnClickListener {
+            val intent = Intent(holder.itemView.context,TrendingChat::class.java)
+            intent.putExtra("GroupName",currentList.hawker_name)
+            intent.putExtra("uid",FirebaseAuth.getInstance().currentUser?.uid)
+            holder.itemView.context.startActivity(intent)
+        }
 //        holder.itemImage.setImageResource(images[position])
-//        holder.itemView.setOnClickListener {
-//            val intent = Intent(context,TrendingChat::class.java)
-//            intent.putExtra("GroupName",hawkerList[position].hawker_name)
-//            intent.putExtra("uid",FirebaseAuth.getInstance().currentUser?.uid)
-//            context.startActivity(intent)
-//        }
 
     }
 
@@ -134,11 +145,13 @@ class RecyclerAdapter(/*val context: Context,*/val hawkerList:ArrayList<Hawkers>
 //        var itemImage: ImageView
         var itemTitle: TextView
         var itemDetail: TextView
+        var Chatbtn: Button
 
         init{
 //            itemImage = itemView.findViewById(R.id.item_image)
             itemTitle = itemView.findViewById(R.id.item_title)
             itemDetail = itemView.findViewById(R.id.item_detail)
+            Chatbtn = itemView.findViewById(R.id.chat)
 
         }
 

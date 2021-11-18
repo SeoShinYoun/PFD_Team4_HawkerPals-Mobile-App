@@ -8,6 +8,7 @@ import android.text.TextUtils
 import android.util.Log
 import android.widget.EditText
 import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -22,6 +23,7 @@ import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_trending_chat.*
 import kotlinx.android.synthetic.main.fragment_home.*
 import java.util.ArrayList
+import kotlin.math.log
 
 class TrendingChat : AppCompatActivity() {
 
@@ -45,9 +47,11 @@ class TrendingChat : AppCompatActivity() {
     setContentView(R.layout.activity_trending_chat)
 
 
+    val nameOfGroup = findViewById<TextView>(R.id.GroupName)
     val intent = Intent()
     val groupname = intent.getStringExtra("GroupName")
     val receiverUid = intent.getStringExtra("uid")
+
     val senderUid = FirebaseAuth.getInstance().currentUser?.uid
     val dbRef = db.getReference()
 
@@ -65,9 +69,8 @@ class TrendingChat : AppCompatActivity() {
     messageRecyclerView.layoutManager = LinearLayoutManager(this)
     messageRecyclerView.adapter = messageAdapter
 
-    GroupName.setText(groupname)
 
-//    GroupName.setText(groupname)
+
     //logic for adding data to recycler view
     dbRef.child("chats").child(senderRoom!!).child("messages")
         .addValueEventListener(object: ValueEventListener {
