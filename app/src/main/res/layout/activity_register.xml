@@ -8,6 +8,16 @@
     android:backgroundTint="@color/custom_color_primary"
     tools:context=".RegisterActivity">
 
+    <RelativeLayout
+        android:id="@+id/relativeLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="600dp"
+        android:background="@drawable/dropshadow"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <EditText
         android:id="@+id/passwordInput2"
         android:layout_width="0dp"
@@ -26,6 +36,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/userNameInput" />
+
 
     <EditText
         android:id="@+id/userNameInput"
@@ -69,7 +80,7 @@
         android:layout_marginStart="50dp"
         android:text="Let's get started!"
         android:textAlignment="viewStart"
-        android:textColor="#FFFFFF"
+        android:textColor="@color/black"
         android:textSize="34sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -102,7 +113,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="24dp"
         android:text="Have an account? Login instead!"
-        android:textColor="#FFFFFF"
+        android:textColor="@color/lightgrey"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

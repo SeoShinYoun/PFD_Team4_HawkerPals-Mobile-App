@@ -15,4 +15,15 @@
     <color name = "custom_color_background">#FFFFFF</color>
     <color name = "custom_color_text_primary">#060906</color>
     <color name = "custom_color_text_secondary">#464747</color>
+
+    <!-- new colors -->
+    <color name = "new_color">#6c2b0f</color>
+    <color name = "new_color2">#a28662</color>
+    <color name="pink">#FFC0CB</color>
+    <color name="gray">#808080</color>
+    <color name="cyan">#00FFFF</color>
+    <color name="lightblue">#ADD8E6</color>
+    <color name="lightgrey">#C0C0C0</color>
+    <color name="babyblue">#89CFF0</color>
+
 </resources>
