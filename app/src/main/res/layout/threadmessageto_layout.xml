@@ -7,7 +7,7 @@
     android:layout_height="wrap_content">
 
     <Button
-        android:id="@+id/threadMessageTextTo"
+        android:id="@+id/threadMessageText"
         android:layout_width="0dp"
         android:layout_height="53dp"
         android:layout_marginTop="16dp"

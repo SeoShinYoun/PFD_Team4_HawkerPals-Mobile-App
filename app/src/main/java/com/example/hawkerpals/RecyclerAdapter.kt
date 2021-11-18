@@ -12,7 +12,11 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.hawkerpals.bottomnavbartutorial.fragments.HomeFragment
+import com.google.firebase.auth.AdditionalUserInfo
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.*
+import com.google.firebase.ktx.Firebase
 
 //class RecyclerAdapter(val context: Context,val hawkerList: ArrayList<Hawkers>) : RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
 //    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerAdapter.ViewHolder {
@@ -101,6 +105,11 @@ import com.google.firebase.auth.FirebaseAuth
 
 class RecyclerAdapter(val hawkerList:ArrayList<Hawkers>) : RecyclerView.Adapter<RecyclerAdapter.ViewHolder>(){
 
+    private lateinit var user: User
+    private lateinit var username:String
+    private lateinit var mAuth: FirebaseAuth
+    var db = FirebaseDatabase.getInstance("https://hawkerpals-de16f-default-rtdb.asia-southeast1.firebasedatabase.app/")
+    val dbRef = db.getReference()
 //    private var titles = arrayOf("Telok Ayer Market", "Tiong Bahru Market", "Maxwell Food Centre", "Chinatown Complex",
 //        "Golden Mile Centre", "ABC Brickworks", "Bedok Food Centre", "Tekka Food Centre")
 //
@@ -124,12 +133,14 @@ class RecyclerAdapter(val hawkerList:ArrayList<Hawkers>) : RecyclerView.Adapter<
     }
 
     override fun onBindViewHolder(holder: RecyclerAdapter.ViewHolder, position: Int) {
-       val currentList = hawkerList[position]
+        val currentList = hawkerList[position]
         holder.itemTitle.text = currentList.hawker_name
         holder.itemDetail.text = currentList.hawker_address
+
         holder.Chatbtn.setOnClickListener {
             val intent = Intent(holder.itemView.context,TrendingChat::class.java)
             intent.putExtra("GroupName",currentList.hawker_name)
+//            intent.putExtra("username",FirebaseAuth.getInstance())
             intent.putExtra("uid",FirebaseAuth.getInstance().currentUser?.uid)
             holder.itemView.context.startActivity(intent)
         }
