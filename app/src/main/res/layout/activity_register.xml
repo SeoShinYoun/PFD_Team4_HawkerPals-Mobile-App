@@ -51,13 +51,14 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="140dp"
         android:layout_marginEnd="50dp"
         android:background="@drawable/rounded_edittext_register_login"
         android:text="Sign Up"
         android:textStyle="bold"
         app:backgroundTint="@color/custom_color_secondary"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/passwordInput2" />
 
@@ -81,7 +82,7 @@
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_marginStart="50dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="50dp"
         android:background="@drawable/rounded_edittext_register_login"
         android:drawableLeft="@drawable/email"
@@ -91,7 +92,7 @@
         android:inputType="textEmailAddress"
         android:paddingLeft="15dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/SignUptxt" />
 
@@ -99,12 +100,13 @@
         android:id="@+id/toLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="48dp"
+        android:layout_marginBottom="24dp"
         android:text="Have an account? Login instead!"
         android:textColor="#FFFFFF"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.526"
         app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
@@ -116,5 +118,52 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/applogo" />
+
+    <Switch
+        android:id="@+id/vaxSwitch"
+        android:layout_width="250dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="71dp"
+        android:clickable="true"
+        android:focusable="auto"
+        android:gravity="center"
+        android:minHeight="48dp"
+        android:text="I am fully vaccinated"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/passwordInput2" />
+
+    <Switch
+        android:id="@+id/userTypeSwitch"
+        android:layout_width="182dp"
+        android:layout_height="46dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="14dp"
+        android:layout_marginEnd="20dp"
+        android:clickable="true"
+        android:focusable="auto"
+        android:gravity="center"
+        android:text="Customer"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toStartOf="@+id/textView2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/vaxSwitch"
+        tools:ignore="TouchTargetSizeCheck" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_marginTop="23dp"
+        android:layout_marginEnd="68dp"
+        android:text="Hawker"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/userTypeSwitch"
+        app:layout_constraintTop_toBottomOf="@+id/vaxSwitch" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

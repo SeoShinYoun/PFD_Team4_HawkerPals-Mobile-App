@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.FirebaseAuth
@@ -19,9 +20,8 @@ import kotlinx.android.synthetic.main.activity_register.*
 
 class RegisterActivity : AppCompatActivity() {
     lateinit var auth: FirebaseAuth
-    lateinit var databaseReference :  DatabaseReference
-    var database: FirebaseDatabase? = null
-
+    var vaxxed: Boolean = false
+    var type: String = "customer"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,6 +30,16 @@ class RegisterActivity : AppCompatActivity() {
         toLogin.setOnClickListener{
             onBackPressed()
 //            startActivity(Intent(this@RegisterActivity, LoginActivity::class.java))
+        }
+        userTypeSwitch.setOnCheckedChangeListener{ _, isChecked ->
+            type = if(isChecked){
+                "hawker"
+            } else{
+                "customer"
+            }
+        }
+        vaxSwitch.setOnCheckedChangeListener { _, isChecked ->
+            vaxxed = isChecked
         }
         registerButton.setOnClickListener {
             when {
@@ -43,7 +53,7 @@ class RegisterActivity : AppCompatActivity() {
                 TextUtils.isEmpty(userNameInput.text.toString().trim() { it <= ' '}) ->{
                     Toast.makeText(
                         this@RegisterActivity,
-                        "Please enter your password.",
+                        "Please enter your username.",
                         Toast.LENGTH_SHORT
                     ).show()
                 }
@@ -60,7 +70,6 @@ class RegisterActivity : AppCompatActivity() {
                     val password: String = passwordInput2.text.toString().trim() { it <= ' '}
                     val name: String = userNameInput.text.toString().trim() { it <= ' '}
 
-
                     FirebaseAuth.getInstance().createUserWithEmailAndPassword(email,password)
                         .addOnCompleteListener(
                             OnCompleteListener { task ->
@@ -70,7 +79,7 @@ class RegisterActivity : AppCompatActivity() {
                                     //[START of writing to Firebase Realtime Database]
                                     val db = Firebase.database("https://hawkerpals-de16f-default-rtdb.asia-southeast1.firebasedatabase.app/")
                                     val dbRef = db.getReference("user_info")
-                                    val user = User(user_email = null, user_id = null, user_name = null, user_type = null)
+                                    val user = User(user_email = null, user_id = null, user_name = null, user_type = null, vacinated = null)
                                     val availableIDs: MutableList<Int> = mutableListOf()
                                     var userKey = "user_"
                                     for(x in (1..9999)){
@@ -87,7 +96,17 @@ class RegisterActivity : AppCompatActivity() {
                                         }
                                         user.user_email = email
                                         user.user_name = name
+                                        user.vacinated = vaxxed
+                                        if(type=="customer"){
+                                            user.user_type = type
+                                            userKey += "c"
+                                        }
+                                        else if (type == "hawker"){
+                                            user.user_type = type
+                                            userKey += "h"
+                                        }
                                         //After adding more input boxes(eg full name, userType, etc) to the registration screen, data can be assigned right after this line
+
                                         user.user_id = turnIntTo4Char(availableIDs.elementAt(0))
                                         userKey += user.user_id
                                         dbRef.child(userKey).setValue(user)
@@ -108,7 +127,9 @@ class RegisterActivity : AppCompatActivity() {
                                     intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                                     intent.putExtra("user_id",firebaseUser.uid)
                                     intent.putExtra("email_id",email)
-                                    intent.putExtra("userName",name)
+                                    intent.putExtra("user_name",name)
+                                    intent.putExtra("vacinated",vaxxed)
+                                    intent.putExtra("user_type",type)
                                     startActivity(intent)
                                     finish()
 
@@ -125,6 +146,7 @@ class RegisterActivity : AppCompatActivity() {
             }
         }
     }
+
     private fun turnIntTo4Char(id: Int): String {
         if (id>999){
             return id.toString()
@@ -140,9 +162,24 @@ class RegisterActivity : AppCompatActivity() {
         }
         return "NO ID"
     }
-
-   private fun addUserToDB(name:String,email:String,uid:String){
-       databaseReference = FirebaseDatabase.getInstance().getReference()
-       databaseReference.child("user").child(uid).setValue(User(name,email,uid))
-   }
+    private fun isVaxxed(): Boolean {
+        vaxSwitch.setOnCheckedChangeListener { _, isChecked ->
+            vaxxed = isChecked
+        }
+        return vaxxed
+    }
+    private fun isType(): String {
+        userTypeSwitch.setOnCheckedChangeListener{ _, isChecked ->
+            type = if(isChecked){
+                "hawker"
+            } else{
+                "customer"
+            }
+        }
+        return type
+    }
+//   private fun addUserToDB(name:String,email:String,uid:String){
+//       databaseReference = FirebaseDatabase.getInstance().getReference()
+//       databaseReference.child("user").child(uid).setValue(User(name,email,uid))
+//   }
 }
