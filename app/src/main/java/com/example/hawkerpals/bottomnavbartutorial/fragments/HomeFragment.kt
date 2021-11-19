@@ -114,16 +114,6 @@ class HomeFragment : Fragment() {
         hawkerList = arrayListOf<Hawkers>()
         getHawkerData(hawkerList)
 
-//        recycler_view.apply{
-//            // set a LinearLayoutManager to handle Android
-//            // RecyclerView behavior
-//
-//            hawkerList = arrayListOf<Hawkers>()
-//            getHawkerData(hawkerList)
-//            layoutManager = LinearLayoutManager(activity)
-//            // set the custom adapter to the RecyclerView
-//            adapter = RecyclerAdapter(context,hawkerList)
-//        }
     }
     private fun getHawkerData(arrayList: ArrayList<Hawkers>){
         dbRef.addValueEventListener(object :ValueEventListener{

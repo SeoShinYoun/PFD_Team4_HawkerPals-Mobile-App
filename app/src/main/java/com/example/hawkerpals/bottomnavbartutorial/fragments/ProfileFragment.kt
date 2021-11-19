@@ -9,23 +9,27 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.TextView
 import android.widget.Toast
-import com.example.hawkerpals.HomeActivity
-import com.example.hawkerpals.LoginActivity
+import com.example.hawkerpals.*
 import com.example.hawkerpals.R
-import com.example.hawkerpals.ResetPasswordActivity
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseUser
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.*
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.fragment_profile.*
 
 
 
 class ProfileFragment : Fragment() {
 
+    private lateinit var mAuth: FirebaseAuth
+    val db = Firebase.database("https://hawkerpals-de16f-default-rtdb.asia-southeast1.firebasedatabase.app/")
+    val dbRef = db.getReference()
+    var user:User? = null
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -33,8 +37,25 @@ class ProfileFragment : Fragment() {
 
         // Inflate the layout for this fragment
 
+        mAuth = FirebaseAuth.getInstance()
+        mAuth.currentUser
+
+//        dbRef.child("user_info").addValueEventListener(object :ValueEventListener{
+//            override fun onDataChange(snapshot: DataSnapshot) {
+//                user = snapshot.child(mAuth.uid!!).getValue(User::class.java)!!
+//            }
+//
+//            override fun onCancelled(error: DatabaseError) {
+//                TODO("Not yet implemented")
+//            }
+//
+//        })
+
+
         val v = inflater.inflate(R.layout.fragment_profile, container, false)
 
+        val txtname = v.findViewById<TextView>(R.id.nameOfUser)
+//        txtname.setText(user?.user_name)
         val btn = v.findViewById<Button>(R.id.logout)
         btn.setOnClickListener{
             val intent = Intent (getActivity(), LoginActivity::class.java)
@@ -79,22 +100,4 @@ class ProfileFragment : Fragment() {
         super.onStop()
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-    }
-
-    override fun onDetach() {
-        super.onDetach()
-    }
-
-
-
-    companion object {
-
-
-    }
 }

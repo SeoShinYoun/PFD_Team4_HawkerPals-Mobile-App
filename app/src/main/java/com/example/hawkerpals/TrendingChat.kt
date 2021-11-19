@@ -93,24 +93,7 @@ class TrendingChat : AppCompatActivity() {
             }
 
         })
-        //logic for adding data to recycler view
-//        dbRef.child("chats").child(senderRoom!!).child("messages")
-//            .addValueEventListener(object: ValueEventListener {
-//                override fun onDataChange(snapshot: DataSnapshot) {
-//
-//                    messageList.clear()
-//                    for(postSnapshot in snapshot.children){
-//                        val message = postSnapshot.getValue(ThreadMessage::class.java)
-//                        messageList.add((message!!))
-//                    }
-//                    messageAdapter.notifyDataSetChanged()
-//                }
-//
-//                override fun onCancelled(error: DatabaseError) {
-//                    TODO("Not yet implemented")
-//                }
-//
-//            })
+
 
         sendButton.setOnClickListener {
             val message = messageBox.text.toString()

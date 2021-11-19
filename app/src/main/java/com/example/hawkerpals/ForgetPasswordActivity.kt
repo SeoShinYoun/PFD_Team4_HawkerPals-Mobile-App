@@ -1,13 +1,10 @@
 package com.example.hawkerpals
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
-import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_forget_password.*
 import android.util.Patterns
 
@@ -20,13 +17,13 @@ class ForgetPasswordActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_forget_password)
-        if(!isValidEmail(forgetEmail.text.toString())){
-            forgetEmail.setError("Invalid email")
+        if(!isValidEmail(enterpw1.text.toString())){
+            enterpw1.setError("Invalid email")
         }
         mAuth = FirebaseAuth.getInstance();
 
         resetBtn.setOnClickListener {
-            mAuth.sendPasswordResetEmail(forgetEmail.text.toString())
+            mAuth.sendPasswordResetEmail(enterpw1.text.toString())
             Toast.makeText(
                 this@ForgetPasswordActivity,
                 "Please check your email to reset the password",
