@@ -136,14 +136,30 @@ class RecyclerAdapter(val hawkerList:ArrayList<Hawkers>) : RecyclerView.Adapter<
         val currentList = hawkerList[position]
         holder.itemTitle.text = currentList.hawker_name
         holder.itemDetail.text = currentList.hawker_address
+        dbRef.child("Users").addValueEventListener(object :ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+                user = snapshot.child(FirebaseAuth.getInstance().currentUser!!.uid).getValue(User::class.java)!!
+                holder.Chatbtn.setOnClickListener {
+                    val intent = Intent(holder.itemView.context,TrendingChat::class.java)
+                    intent.putExtra("GroupName",currentList.hawker_name)
+                    intent.putExtra("username",user.user_name)
+                    intent.putExtra("uid",FirebaseAuth.getInstance().currentUser?.uid)
+                    holder.itemView.context.startActivity(intent)
+                }
+            }
 
-        holder.Chatbtn.setOnClickListener {
-            val intent = Intent(holder.itemView.context,TrendingChat::class.java)
-            intent.putExtra("GroupName",currentList.hawker_name)
-//            intent.putExtra("username",FirebaseAuth.getInstance())
-            intent.putExtra("uid",FirebaseAuth.getInstance().currentUser?.uid)
-            holder.itemView.context.startActivity(intent)
-        }
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+
+        })
+//        holder.Chatbtn.setOnClickListener {
+//            val intent = Intent(holder.itemView.context,TrendingChat::class.java)
+//            intent.putExtra("GroupName",currentList.hawker_name)
+//            intent.putExtra("username",user.user_name)
+//            intent.putExtra("uid",FirebaseAuth.getInstance().currentUser?.uid)
+//            holder.itemView.context.startActivity(intent)
+//        }
 //        holder.itemImage.setImageResource(images[position])
 
     }

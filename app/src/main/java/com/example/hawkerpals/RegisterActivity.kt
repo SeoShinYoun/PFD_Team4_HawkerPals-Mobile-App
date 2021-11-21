@@ -19,9 +19,13 @@ import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_register.*
 
 class RegisterActivity : AppCompatActivity() {
-    lateinit var auth: FirebaseAuth
+
     var vaxxed: Boolean = false
     var type: String = "customer"
+
+    val db = Firebase.database("https://hawkerpals-de16f-default-rtdb.asia-southeast1.firebasedatabase.app/")
+    val dbRef = db.getReference()
+    var user: FirebaseUser? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -77,42 +81,44 @@ class RegisterActivity : AppCompatActivity() {
                                     val firebaseUser: FirebaseUser = task.result!!.user!!
 
                                     //[START of writing to Firebase Realtime Database]
-                                    val db = Firebase.database("https://hawkerpals-de16f-default-rtdb.asia-southeast1.firebasedatabase.app/")
-                                    val dbRef = db.getReference("user_info")
-                                    val user = User(user_email = null, user_id = null, user_name = null, user_type = null, vacinated = null)
-                                    val availableIDs: MutableList<Int> = mutableListOf()
-                                    var userKey = "user_"
-                                    for(x in (1..9999)){
-                                        availableIDs.add(x)
-                                    }
-
-                                    dbRef.get().addOnSuccessListener {
-                                        for (users in it.children){
-                                            for (data in users.children){
-                                                if(data.key == "user_id"){
-                                                    availableIDs.remove(data.value.toString().toInt())
-                                                }
-                                            }
-                                        }
-                                        user.user_email = email
-                                        user.user_name = name
-                                        user.vacinated = vaxxed
-                                        if(type=="customer"){
-                                            user.user_type = type
-                                            userKey += "c"
-                                        }
-                                        else if (type == "hawker"){
-                                            user.user_type = type
-                                            userKey += "h"
-                                        }
-                                        //After adding more input boxes(eg full name, userType, etc) to the registration screen, data can be assigned right after this line
-
-                                        user.user_id = turnIntTo4Char(availableIDs.elementAt(0))
-                                        userKey += user.user_id
-                                        dbRef.child(userKey).setValue(user)
-                                    }.addOnFailureListener{
-                                        Log.e("firebase", "Error getting data", it)
-                                    }
+//                                    val db = Firebase.database("https://hawkerpals-de16f-default-rtdb.asia-southeast1.firebasedatabase.app/")
+//                                    val dbRef = db.getReference("user_info")
+                                    user = FirebaseAuth.getInstance().currentUser
+                                    saveUser(user!!.uid,name,email,vaxxed,type)
+//                                    val user = User(user_email = null, user_id = null, user_name = null, user_type = null, vacinated = null)
+//                                    val availableIDs: MutableList<Int> = mutableListOf()
+//                                    var userKey = "user_"
+//                                    for(x in (1..9999)){
+//                                        availableIDs.add(x)
+//                                    }
+//
+//                                    dbRef.get().addOnSuccessListener {
+//                                        for (users in it.children){
+//                                            for (data in users.children){
+//                                                if(data.key == "user_id"){
+//                                                    availableIDs.remove(data.value.toString().toInt())
+//                                                }
+//                                            }
+//                                        }
+//                                        user.user_email = email
+//                                        user.user_name = name
+//                                        user.vacinated = vaxxed
+//                                        if(type=="customer"){
+//                                            user.user_type = type
+//                                            userKey += "c"
+//                                        }
+//                                        else if (type == "hawker"){
+//                                            user.user_type = type
+//                                            userKey += "h"
+//                                        }
+//                                        //After adding more input boxes(eg full name, userType, etc) to the registration screen, data can be assigned right after this line
+//
+//                                        user.user_id = turnIntTo4Char(availableIDs.elementAt(0))
+//                                        userKey += user.user_id
+//                                        dbRef.child(userKey).setValue(user)
+//                                    }.addOnFailureListener{
+//                                        Log.e("firebase", "Error getting data", it)
+//                                    }
                                     //[END of writing to Firebase Realtime Database]
 
                                     Toast.makeText(
@@ -125,7 +131,7 @@ class RegisterActivity : AppCompatActivity() {
                                     val intent =
                                         Intent(this@RegisterActivity,HomeActivity::class.java)
                                     intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                                    intent.putExtra("user_id",firebaseUser.uid)
+                                    intent.putExtra("user_id", user!!.uid)
                                     intent.putExtra("email_id",email)
                                     intent.putExtra("user_name",name)
                                     intent.putExtra("vacinated",vaxxed)
@@ -147,39 +153,42 @@ class RegisterActivity : AppCompatActivity() {
         }
     }
 
-    private fun turnIntTo4Char(id: Int): String {
-        if (id>999){
-            return id.toString()
-        }
-        if (id>99){
-            return ("0"+id)
-        }
-        if (id>9){
-            return ("00"+id)
-        }
-        if (id>0){
-            return ("000"+id)
-        }
-        return "NO ID"
+//    private fun turnIntTo4Char(id: Int): String {
+//        if (id>999){
+//            return id.toString()
+//        }
+//        if (id>99){
+//            return ("0"+id)
+//        }
+//        if (id>9){
+//            return ("00"+id)
+//        }
+//        if (id>0){
+//            return ("000"+id)
+//        }
+//        return "NO ID"
+//    }
+//    private fun isVaxxed(): Boolean {
+//        vaxSwitch.setOnCheckedChangeListener { _, isChecked ->
+//            vaxxed = isChecked
+//        }
+//        return vaxxed
+//    }
+//    private fun isType(): String {
+//        userTypeSwitch.setOnCheckedChangeListener{ _, isChecked ->
+//            type = if(isChecked){
+//                "hawker"
+//            } else{
+//                "customer"
+//            }
+//        }
+//        return type
+//    }
+
+    private fun saveUser(uid:String,username:String,email:String,vaxxed:Boolean,type:String){
+        val user = User(email,uid,username,type,vaxxed)
+        dbRef.child("Users").child(uid).setValue(user)
+
+
     }
-    private fun isVaxxed(): Boolean {
-        vaxSwitch.setOnCheckedChangeListener { _, isChecked ->
-            vaxxed = isChecked
-        }
-        return vaxxed
-    }
-    private fun isType(): String {
-        userTypeSwitch.setOnCheckedChangeListener{ _, isChecked ->
-            type = if(isChecked){
-                "hawker"
-            } else{
-                "customer"
-            }
-        }
-        return type
-    }
-//   private fun addUserToDB(name:String,email:String,uid:String){
-//       databaseReference = FirebaseDatabase.getInstance().getReference()
-//       databaseReference.child("user").child(uid).setValue(User(name,email,uid))
-//   }
 }

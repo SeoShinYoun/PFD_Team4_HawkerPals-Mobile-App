@@ -39,22 +39,26 @@ class ProfileFragment : Fragment() {
 
         mAuth = FirebaseAuth.getInstance()
         mAuth.currentUser
-
-//        dbRef.child("user_info").addValueEventListener(object :ValueEventListener{
-//            override fun onDataChange(snapshot: DataSnapshot) {
-//                user = snapshot.child(mAuth.uid!!).getValue(User::class.java)!!
-//            }
-//
-//            override fun onCancelled(error: DatabaseError) {
-//                TODO("Not yet implemented")
-//            }
-//
-//        })
-
-
         val v = inflater.inflate(R.layout.fragment_profile, container, false)
 
-        val txtname = v.findViewById<TextView>(R.id.nameOfUser)
+        dbRef.child("Users").addValueEventListener(object :ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+                user = snapshot.child(FirebaseAuth.getInstance().currentUser!!.uid).getValue(User::class.java)
+                val txtname = v.findViewById<TextView>(R.id.nameOfUser)
+                txtname.setText(user?.user_name)
+
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+
+        })
+
+
+//        val v = inflater.inflate(R.layout.fragment_profile, container, false)
+
+//        val txtname = v.findViewById<TextView>(R.id.nameOfUser)
 //        txtname.setText(user?.user_name)
         val btn = v.findViewById<Button>(R.id.logout)
         btn.setOnClickListener{
@@ -81,23 +85,5 @@ class ProfileFragment : Fragment() {
 
     }
 
-    override fun onStart() {
-        super.onStart()
-
-    }
-
-    override fun onResume() {
-        super.onResume()
-
-    }
-
-    override fun onPause() {
-        super.onPause()
-
-    }
-
-    override fun onStop() {
-        super.onStop()
-    }
 
 }

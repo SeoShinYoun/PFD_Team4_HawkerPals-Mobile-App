@@ -3,7 +3,7 @@ package com.example.hawkerpals
 class ThreadMessage{
     var sentUserID : String? = null
     var groupName : String? = null
-//    var sentUserName : String? = null
+    var sentUserName : String? = null
     var messageContent : String? = null
 
     constructor(){}
@@ -11,8 +11,8 @@ class ThreadMessage{
     constructor(message: String?, sentUserID:String?, userName:String?,grpName:String?){
 
         this.messageContent = message
-//        this.sentUserName = userName
         this.sentUserID = sentUserID
+        this.sentUserName = userName
         this.groupName = grpName
 
     }

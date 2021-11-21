@@ -39,9 +39,7 @@ class TrendingChat : AppCompatActivity() {
     private lateinit var mAuth: FirebaseAuth
     var db = FirebaseDatabase.getInstance("https://hawkerpals-de16f-default-rtdb.asia-southeast1.firebasedatabase.app/")
     val dbRef = db.getReference()
-//    var receiverRoom:String? = null
-//    var senderRoom:String? = null
-    //    val db = Firebase.database("https://hawkerpals-de16f-default-rtdb.asia-southeast1.firebasedatabase.app/")
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -55,14 +53,11 @@ class TrendingChat : AppCompatActivity() {
 
         val username = intent.getStringExtra("username")
         val groupname = intent.getStringExtra("GroupName")
-//        val receiverUid = intent.getStringExtra("uid")
 
-//        val senderUid = mAuth.currentUser?.uid
 
         nameOfGroup = findViewById(R.id.GroupName)
         nameOfGroup.setText(groupname)
-//        senderRoom = receiverUid + senderUid
-//        receiverRoom = senderUid + receiverUid
+
 
         messageRecyclerView = findViewById(R.id.messageRv)
         messageBox = findViewById(R.id.sendThreadMessage)
@@ -80,9 +75,9 @@ class TrendingChat : AppCompatActivity() {
                 messageList.clear()
                 for(postSnapshot in snapshot.children){
                     val message = postSnapshot.getValue(ThreadMessage::class.java)
-                        if(message?.groupName.contentEquals(groupname)){
-                            messageList.add(message!!)
-                        }
+                    if(message?.groupName.contentEquals(groupname)){
+                        messageList.add(message!!)
+                    }
                 }
                 messageAdapter.notifyDataSetChanged()
                 messageRecyclerView.smoothScrollToPosition((messageRecyclerView.adapter as TrendingChatAdapter).itemCount)
@@ -105,13 +100,7 @@ class TrendingChat : AppCompatActivity() {
                 dbRef.child("Messages").push().setValue(messageObject)
                 messageBox.setText("")
             }
-//            val messageObject = ThreadMessage(message,senderUid,groupname)
-//            dbRef.child("chats").child(senderRoom!!).child("messages").push()
-//                .setValue(messageObject).addOnSuccessListener {
-//                    dbRef.child("chats").child(receiverRoom!!).child("messages").push()
-//                        .setValue(messageObject)
-//                }
-//            messageBox.setText("")
+
 
         }
 
