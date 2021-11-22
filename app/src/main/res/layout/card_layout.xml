@@ -34,30 +34,36 @@
 
         <TextView
             android:id="@+id/item_title"
-            android:layout_width="236dp"
-            android:layout_height="50dp"
+            android:layout_width="305dp"
+            android:layout_height="52dp"
+            android:layout_marginTop="16dp"
             android:textColor="@color/white"
             android:textSize="20sp"
             android:textStyle="bold"
-            card_view:layout_constraintLeft_toRightOf="@+id/item_image"
+            card_view:layout_constraintEnd_toEndOf="parent"
+            card_view:layout_constraintHorizontal_bias="0.0"
+            card_view:layout_constraintStart_toStartOf="parent"
             card_view:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/item_detail"
-            android:layout_width="240dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_width="203dp"
+            android:layout_height="34dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="20dp"
             android:textColor="@color/white"
             android:textStyle="italic"
+            card_view:layout_constraintEnd_toStartOf="@+id/chat"
+            card_view:layout_constraintHorizontal_bias="0.0"
             card_view:layout_constraintStart_toStartOf="parent"
             card_view:layout_constraintTop_toBottomOf="@+id/item_title" />
 
         <Button
             android:id="@+id/chat"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_width="88dp"
+            android:layout_height="44dp"
+            android:layout_marginTop="92dp"
+            android:layout_marginEnd="16dp"
             android:text="Chat"
             card_view:layout_constraintEnd_toEndOf="parent"
             card_view:layout_constraintTop_toTopOf="parent" />

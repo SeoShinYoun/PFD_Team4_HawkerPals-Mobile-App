@@ -29,7 +29,7 @@ class HomeActivity : AppCompatActivity() {
         val activityFragment = ActivityFragment()
         val profileFragment = ProfileFragment()
 
-        makeCurrentFragment(profileFragment)
+        makeCurrentFragment(homeFragment)
 
         bottom_navigation.setOnItemSelectedListener{
             when (it.itemId){
