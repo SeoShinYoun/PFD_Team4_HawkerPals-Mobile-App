@@ -114,7 +114,7 @@
         android:id="@+id/toLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
+        android:layout_marginBottom="28dp"
         android:text="Have an account? Login instead!"
         android:textColor="@color/white"
         android:textSize="18sp"

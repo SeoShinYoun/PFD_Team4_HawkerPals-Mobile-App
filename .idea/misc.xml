@@ -49,10 +49,12 @@
         <entry key="..\:/Users/shiny/AndroidStudioProjects/HawkerPals3/app/src/main/res/drawable/indicator_inactive_background.xml" value="0.3728205128205128" />
         <entry key="..\:/Users/shiny/AndroidStudioProjects/HawkerPals3/app/src/main/res/drawable/rounded_edittext_register_login.xml" value="0.3796875" />
         <entry key="..\:/Users/shiny/AndroidStudioProjects/HawkerPals3/app/src/main/res/drawable/view_pager_background.xml" value="0.3728205128205128" />
+        <entry key="..\:/Users/shiny/AndroidStudioProjects/HawkerPals3/app/src/main/res/layout/activity_forget_password.xml" value="0.29739583333333336" />
         <entry key="..\:/Users/shiny/AndroidStudioProjects/HawkerPals3/app/src/main/res/layout/activity_home.xml" value="0.3625" />
         <entry key="..\:/Users/shiny/AndroidStudioProjects/HawkerPals3/app/src/main/res/layout/activity_login.xml" value="0.23822463768115942" />
         <entry key="..\:/Users/shiny/AndroidStudioProjects/HawkerPals3/app/src/main/res/layout/activity_main.xml" value="0.23822463768115942" />
         <entry key="..\:/Users/shiny/AndroidStudioProjects/HawkerPals3/app/src/main/res/layout/activity_register.xml" value="0.23822463768115942" />
+        <entry key="..\:/Users/shiny/AndroidStudioProjects/HawkerPals3/app/src/main/res/layout/activity_reset_password.xml" value="0.2898550724637681" />
         <entry key="..\:/Users/shiny/AndroidStudioProjects/HawkerPals3/app/src/main/res/layout/card_layout.xml" value="0.264" />
         <entry key="..\:/Users/shiny/AndroidStudioProjects/HawkerPals3/app/src/main/res/layout/cardview.xml" value="0.4" />
         <entry key="..\:/Users/shiny/AndroidStudioProjects/HawkerPals3/app/src/main/res/layout/fragment_activity.xml" value="0.20153985507246377" />
