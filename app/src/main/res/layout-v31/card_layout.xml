@@ -25,14 +25,14 @@
 
         <TextView
             android:id="@+id/item_title"
-            android:layout_width="334dp"
-            android:layout_height="53dp"
+            android:layout_width="305dp"
+            android:layout_height="52dp"
             android:layout_marginTop="4dp"
             android:textColor="@color/white"
             android:textSize="20sp"
             android:textStyle="bold"
             card_view:layout_constraintEnd_toEndOf="parent"
-            card_view:layout_constraintHorizontal_bias="0.384"
+            card_view:layout_constraintHorizontal_bias="0.29"
             card_view:layout_constraintStart_toStartOf="parent"
             card_view:layout_constraintTop_toTopOf="parent" />
 
@@ -41,11 +41,11 @@
             android:layout_width="203dp"
             android:layout_height="34dp"
             android:layout_marginStart="4dp"
-            android:layout_marginTop="6dp"
+            android:layout_marginTop="12dp"
             android:textColor="@color/white"
             android:textStyle="italic"
             card_view:layout_constraintEnd_toStartOf="@+id/chat"
-            card_view:layout_constraintHorizontal_bias="0.09"
+            card_view:layout_constraintHorizontal_bias="0.0"
             card_view:layout_constraintStart_toStartOf="parent"
             card_view:layout_constraintTop_toBottomOf="@+id/item_title" />
 
@@ -53,7 +53,7 @@
             android:id="@+id/chat"
             android:layout_width="88dp"
             android:layout_height="44dp"
-            android:layout_marginTop="60dp"
+            android:layout_marginTop="64dp"
             android:layout_marginEnd="16dp"
             android:text="Chat"
             card_view:layout_constraintEnd_toEndOf="parent"
@@ -70,6 +70,7 @@
             card_view:layout_constraintTop_toBottomOf="@+id/item_detail"
             card_view:layout_constraintVertical_bias="0.424"
             android:background="@drawable/round_outline_hawker_centre"
+            android:clipToOutline="true"
             tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
 

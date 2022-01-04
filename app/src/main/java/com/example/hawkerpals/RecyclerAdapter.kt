@@ -3,6 +3,8 @@ package com.example.hawkerpals
 import android.app.PendingIntent.getActivity
 import android.content.Context
 import android.content.Intent
+import android.icu.number.NumberFormatter.with
+import android.icu.number.NumberRangeFormatter.with
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,6 +19,8 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.*
 import com.google.firebase.ktx.Firebase
+import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.card_layout.view.*
 
 //class RecyclerAdapter(val context: Context,val hawkerList: ArrayList<Hawkers>) : RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
 //    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerAdapter.ViewHolder {
@@ -132,10 +136,14 @@ class RecyclerAdapter(val hawkerList:ArrayList<Hawkers>) : RecyclerView.Adapter<
         return ViewHolder(v)
     }
 
-    override fun onBindViewHolder(holder: RecyclerAdapter.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val currentList = hawkerList[position]
         holder.itemTitle.text = currentList.hawker_name
         holder.itemDetail.text = currentList.hawker_address
+
+        val thumbnailImageView = holder?.itemImage?.item_image
+        Picasso.get().load(currentList.hawker_image).into(thumbnailImageView)
+
         dbRef.child("Users").addValueEventListener(object :ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
                 user = snapshot.child(FirebaseAuth.getInstance().currentUser!!.uid).getValue(User::class.java)!!
@@ -169,13 +177,13 @@ class RecyclerAdapter(val hawkerList:ArrayList<Hawkers>) : RecyclerView.Adapter<
     }
 
     class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
-//        var itemImage: ImageView
+        var itemImage: ImageView
         var itemTitle: TextView
         var itemDetail: TextView
         var Chatbtn: Button
 
         init{
-//            itemImage = itemView.findViewById(R.id.item_image)
+            itemImage = itemView.findViewById(R.id.item_image)
             itemTitle = itemView.findViewById(R.id.item_title)
             itemDetail = itemView.findViewById(R.id.item_detail)
             Chatbtn = itemView.findViewById(R.id.chat)

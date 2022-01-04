@@ -3,6 +3,7 @@ package com.example.hawkerpals
 data class Hawkers (    var hawker_address: String? = null,
                         var hawker_discript: String? = null,
                         var hawker_id: String? = null,
+                        var hawker_image: String? = null,
                         var hawker_locate: String? = null,
                         var hawker_name: String? = null)
 
