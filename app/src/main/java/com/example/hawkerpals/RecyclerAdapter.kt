@@ -161,6 +161,12 @@ class RecyclerAdapter(val hawkerList:ArrayList<Hawkers>) : RecyclerView.Adapter<
             }
 
         })
+
+        holder.Marketbtn.setOnClickListener{
+            val intent = Intent(holder.itemView.context,MarketplaceActivity::class.java)
+            holder.itemView.context.startActivity(intent)
+        }
+
 //        holder.Chatbtn.setOnClickListener {
 //            val intent = Intent(holder.itemView.context,TrendingChat::class.java)
 //            intent.putExtra("GroupName",currentList.hawker_name)
@@ -181,13 +187,14 @@ class RecyclerAdapter(val hawkerList:ArrayList<Hawkers>) : RecyclerView.Adapter<
         var itemTitle: TextView
         var itemDetail: TextView
         var Chatbtn: Button
+        var Marketbtn: Button
 
         init{
             itemImage = itemView.findViewById(R.id.item_image)
             itemTitle = itemView.findViewById(R.id.item_title)
             itemDetail = itemView.findViewById(R.id.item_detail)
             Chatbtn = itemView.findViewById(R.id.chat)
-
+            Marketbtn = itemView.findViewById(R.id.marketplace)
         }
 
     }
