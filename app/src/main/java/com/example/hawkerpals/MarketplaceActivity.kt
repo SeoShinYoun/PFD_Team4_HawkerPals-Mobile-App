@@ -22,6 +22,7 @@ class MarketplaceActivity : AppCompatActivity() {
     private lateinit var mName: TextView
     private var adapter: RecyclerView.Adapter<MarketplaceRecyclerAdapter.ViewHolder>? = null
     private lateinit var listingList: ArrayList<Listing>
+    private lateinit var marketRecyclerView: RecyclerView
     var db = FirebaseDatabase.getInstance("https://hawkerpals-de16f-default-rtdb.asia-southeast1.firebasedatabase.app/")
     val dbRef = db.getReference()
 
@@ -63,7 +64,29 @@ class MarketplaceActivity : AppCompatActivity() {
         layoutManager = LinearLayoutManager(this)
         marketrecycler_view.layoutManager = layoutManager
 
+        val groupname = intent.getStringExtra("GroupName")
         listingList = arrayListOf<Listing>()
+        marketRecyclerView = findViewById(R.id.marketrecycler_view)
+
+        dbRef.child("listing_info").addValueEventListener(object: ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+                listingList.clear()
+                for(listingSnapshot in snapshot.children){
+                    val listing = listingSnapshot.getValue(Listing::class.java)
+                    if(listing?.listing_group.contentEquals(groupname)){
+                        listingList.add(listing!!)
+                    }
+                }
+                if(listingList.isEmpty()){
+                    Toast.makeText(this@MarketplaceActivity,"There are no listings right now, check back later!",Toast.LENGTH_LONG).show()
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+
+        })
 
         dbRef.child("Users").addValueEventListener(object :ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -83,23 +106,26 @@ class MarketplaceActivity : AppCompatActivity() {
             }
 
         })
+
+
     }
 
     private fun getListingData(arrayList: ArrayList<Listing>){
-        dbRef.child("listing_info").addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                if(snapshot.exists()){
-                    for (listingSnapshot in snapshot.children){
-                        val listings = listingSnapshot.getValue(Listing::class.java)
-                        arrayList.add(listings!!)
-                    }
-                    marketrecycler_view.adapter = MarketplaceRecyclerAdapter(arrayList)
-                }
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-                TODO("Not yet implemented")
-            }
-        })
+        marketrecycler_view.adapter = MarketplaceRecyclerAdapter(arrayList)
+//        dbRef.child("listing_info").addValueEventListener(object : ValueEventListener {
+//            override fun onDataChange(snapshot: DataSnapshot) {
+//                if(snapshot.exists()){
+//                    for (listingSnapshot in snapshot.children){
+//                        val listings = listingSnapshot.getValue(Listing::class.java)
+//                        arrayList.add(listings!!)
+//                    }
+//                    marketrecycler_view.adapter = MarketplaceRecyclerAdapter(arrayList)
+//                }
+//            }
+//
+//            override fun onCancelled(error: DatabaseError) {
+//                TODO("Not yet implemented")
+//            }
+//        })
     }
 }

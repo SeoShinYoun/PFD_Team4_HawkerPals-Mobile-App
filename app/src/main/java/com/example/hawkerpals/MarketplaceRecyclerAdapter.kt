@@ -49,10 +49,7 @@ class MarketplaceRecyclerAdapter(val listingList:ArrayList<Listing>) : RecyclerV
             alertDialog.setTitle(currentList.listing_title)
             alertDialog.setMessage("Placeholder text info such as  such as quantity," +
                     " price, intention(buy/sell), stall no., contact details, etc.")
-            alertDialog.setNeutralButton("Ok") { dialog, which ->
-                Toast.makeText(v.context,
-                    "Ok", Toast.LENGTH_SHORT).show()
-            }
+            alertDialog.setNeutralButton("Ok") { dialog, which ->            }
             alertDialog.show()
             //Toast.makeText(v.context,"Placeholder text for name of seller, store number, etc", Toast.LENGTH_SHORT).show()
         }
