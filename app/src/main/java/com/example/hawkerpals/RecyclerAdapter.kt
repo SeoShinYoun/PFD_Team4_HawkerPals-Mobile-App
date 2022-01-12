@@ -164,17 +164,11 @@ class RecyclerAdapter(val hawkerList:ArrayList<Hawkers>) : RecyclerView.Adapter<
 
         holder.Marketbtn.setOnClickListener{
             val intent = Intent(holder.itemView.context,MarketplaceActivity::class.java)
+            intent.putExtra("GroupName",currentList.hawker_name)
+
             holder.itemView.context.startActivity(intent)
         }
 
-//        holder.Chatbtn.setOnClickListener {
-//            val intent = Intent(holder.itemView.context,TrendingChat::class.java)
-//            intent.putExtra("GroupName",currentList.hawker_name)
-//            intent.putExtra("username",user.user_name)
-//            intent.putExtra("uid",FirebaseAuth.getInstance().currentUser?.uid)
-//            holder.itemView.context.startActivity(intent)
-//        }
-//        holder.itemImage.setImageResource(images[position])
 
     }
 

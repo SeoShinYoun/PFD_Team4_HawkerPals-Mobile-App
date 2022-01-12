@@ -3,29 +3,63 @@ package com.example.hawkerpals
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.hawkerpals.models.Post
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.*
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Query
 import kotlinx.android.synthetic.main.activity_marketplace.*
+import kotlinx.android.synthetic.main.activity_upload_market_product.*
 import java.util.ArrayList
 
 class MarketplaceActivity : AppCompatActivity() {
 
     private var layoutManager : RecyclerView.LayoutManager? = null
+    private lateinit var mName: TextView
     private var adapter: RecyclerView.Adapter<MarketplaceRecyclerAdapter.ViewHolder>? = null
     private lateinit var listingList: ArrayList<Listing>
     var db = FirebaseDatabase.getInstance("https://hawkerpals-de16f-default-rtdb.asia-southeast1.firebasedatabase.app/")
     val dbRef = db.getReference()
 
+    //new code
+    private lateinit var firebaseDb: FirebaseFirestore
+    //
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_marketplace)
 
+        //new code
+        firebaseDb = FirebaseFirestore.getInstance()
+        val postsReference = firebaseDb.collection("posts")
+            .limit(30)
+            .orderBy("creation_time", Query.Direction.DESCENDING)
+        postsReference.addSnapshotListener{ snapshot, exception ->
+            if (exception != null || snapshot == null){
+                return@addSnapshotListener
+            }
+            val postList = snapshot.toObjects(Post::class.java)
+            for (post in postList){
+
+            }
+        }
+        //
+
+
+        val intent = getIntent()
+        val groupname = intent.getStringExtra("GroupName")
+        mName = findViewById(R.id.mpName)
+        mName.setText(groupname)
+
+        postBtn.setOnClickListener {
+            val i = Intent(this, uploadMarketProduct::class.java)
+            startActivity(i)
+            finish()
+        }
         layoutManager = LinearLayoutManager(this)
         marketrecycler_view.layoutManager = layoutManager
 

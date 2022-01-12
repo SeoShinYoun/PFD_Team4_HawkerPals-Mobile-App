@@ -22,6 +22,7 @@ import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_trending_chat.*
 import kotlinx.android.synthetic.main.fragment_home.*
+import kotlinx.android.synthetic.main.fragment_profile.*
 import java.util.ArrayList
 import kotlin.math.log
 
@@ -30,6 +31,8 @@ class TrendingChat : AppCompatActivity() {
     private lateinit var messageList: ArrayList<ThreadMessage>
 
     private lateinit var nameOfGroup:TextView
+
+
     private lateinit var messageBox:EditText
     private lateinit var sendButton:ImageView
 

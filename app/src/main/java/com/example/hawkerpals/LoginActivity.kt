@@ -26,6 +26,15 @@ class LoginActivity : AppCompatActivity() {
         forgetPassword.setOnClickListener{
             startActivity(Intent(this@LoginActivity, ForgetPasswordActivity::class.java))
         }
+        val auth = FirebaseAuth.getInstance()
+        if(auth.currentUser != null){
+            val intent =
+                Intent(this@LoginActivity,HomeActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            intent.putExtra("user_id",auth.currentUser!!.uid)
+            startActivity(intent)
+            finish()
+        }
         loginBtn.setOnClickListener {
             when {
                 TextUtils.isEmpty(emailInput.text.toString().trim() { it <= ' '}) ->{

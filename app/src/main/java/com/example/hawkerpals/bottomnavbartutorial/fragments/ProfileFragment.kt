@@ -56,15 +56,12 @@ class ProfileFragment : Fragment() {
         })
 
 
-//        val v = inflater.inflate(R.layout.fragment_profile, container, false)
-
-//        val txtname = v.findViewById<TextView>(R.id.nameOfUser)
-//        txtname.setText(user?.user_name)
         val btn = v.findViewById<Button>(R.id.logout)
         btn.setOnClickListener{
+            FirebaseAuth.getInstance().signOut()
             val intent = Intent (getActivity(), LoginActivity::class.java)
             getActivity()?.startActivity(intent)
-            FirebaseAuth.getInstance().signOut()
+//            FirebaseAuth.getInstance().signOut()
         }
 
         val resetPWbtn = v.findViewById<Button>(R.id.resetPw)

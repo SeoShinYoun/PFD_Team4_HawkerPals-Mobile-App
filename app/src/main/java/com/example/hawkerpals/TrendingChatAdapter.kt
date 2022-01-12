@@ -18,9 +18,6 @@ class TrendingChatAdapter(val context: Context, val messageList:ArrayList<Thread
         val currentMessage = messageList[position]
         holder.messageText.text = currentMessage.messageContent
 //        holder.messagerName.text = currentMessage.sentUserName
-
-
-
     }
 
     override fun onCreateViewHolder(
@@ -52,7 +49,7 @@ class TrendingChatAdapter(val context: Context, val messageList:ArrayList<Thread
 
     class ChatViewHolder(itemView:View) :RecyclerView.ViewHolder(itemView){
         val messageText = itemView.findViewById<TextView>(R.id.threadMessageText)
-        val messagerName = itemView.findViewById<TextView>(R.id.messagerName)
+//        val messagerName = itemView.findViewById<TextView>(R.id.messagerName)
     }
 
 
