@@ -164,6 +164,7 @@ class RecyclerAdapter(val hawkerList:ArrayList<Hawkers>) : RecyclerView.Adapter<
 
         holder.Marketbtn.setOnClickListener{
             val intent = Intent(holder.itemView.context,MarketplaceActivity::class.java)
+            intent.putExtra("GroupName", currentList.hawker_name)
             holder.itemView.context.startActivity(intent)
         }
 
