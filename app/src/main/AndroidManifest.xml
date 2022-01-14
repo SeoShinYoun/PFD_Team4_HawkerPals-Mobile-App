@@ -12,7 +12,9 @@
         android:roundIcon="@mipmap/ic_launcher2_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.HawkerPals">
-
+        <activity
+            android:name=".ProfileEdit"
+            android:exported="false" />
         <activity
             android:name=".MarketplaceActivity"
             android:exported="false" />
@@ -34,23 +36,20 @@
         <activity
             android:name=".HomeActivity"
             android:exported="false" />
-
         <activity
             android:name=".MainActivity"
-            android:exported="true"/>
-
+            android:exported="true" />
         <activity
             android:name=".SplashActivity"
+            android:exported="true"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.NoActionBar"
-            android:exported="true" >
+            android:theme="@style/Theme.AppCompat.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
     </application>
 
 </manifest>

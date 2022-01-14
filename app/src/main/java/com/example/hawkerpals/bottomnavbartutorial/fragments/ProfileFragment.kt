@@ -75,7 +75,12 @@ class ProfileFragment : Fragment() {
         resetPWbtn.setOnClickListener {
             val intent = Intent (getActivity(), ResetPasswordActivity::class.java)
             getActivity()?.startActivity(intent)
+        }
 
+        val editPFbtn = v.findViewById<Button>(R.id.Editprofile)
+        editPFbtn.setOnClickListener {
+            val intent = Intent (getActivity(), ProfileEdit::class.java)
+            getActivity()?.startActivity(intent)
         }
 
         return v
