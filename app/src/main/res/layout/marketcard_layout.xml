@@ -33,7 +33,6 @@
             android:textSize="20sp"
             android:textStyle="bold"
             card_view:layout_constraintEnd_toEndOf="parent"
-            card_view:layout_constraintHorizontal_bias="0.346"
             card_view:layout_constraintStart_toStartOf="parent"
             card_view:layout_constraintTop_toTopOf="parent" />
 
@@ -41,12 +40,11 @@
             android:id="@+id/item_detail"
             android:layout_width="230dp"
             android:layout_height="46dp"
-            android:layout_marginStart="4dp"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:textColor="@color/black"
             android:textStyle="italic"
             card_view:layout_constraintEnd_toStartOf="@+id/marketplace"
-            card_view:layout_constraintHorizontal_bias="0.063"
             card_view:layout_constraintStart_toStartOf="parent"
             card_view:layout_constraintTop_toBottomOf="@+id/item_title" />
 
@@ -71,6 +69,15 @@
             card_view:layout_constraintEnd_toEndOf="parent"
             card_view:layout_constraintStart_toStartOf="parent"
             tools:srcCompat="@tools:sample/backgrounds/scenic" />
+
+        <TextView
+            android:id="@+id/timestamp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="TextView"
+            card_view:layout_constraintBottom_toTopOf="@+id/item_title"
+            card_view:layout_constraintStart_toStartOf="parent" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
