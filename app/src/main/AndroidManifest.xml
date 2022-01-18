@@ -13,6 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.HawkerPals">
         <activity
+            android:name=".ProfileEdit"
+            android:exported="false" />
+        <activity
             android:name=".uploadMarketProduct"
             android:exported="false" />
         <activity
