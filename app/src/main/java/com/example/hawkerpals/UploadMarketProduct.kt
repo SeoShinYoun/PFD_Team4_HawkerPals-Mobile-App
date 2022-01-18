@@ -33,8 +33,6 @@ class uploadMarketProduct : AppCompatActivity() {
         setContentView(R.layout.activity_upload_market_product)
 
         storageReference = FirebaseStorage.getInstance().reference
-//        val intent = getIntent()
-//        val groupname = intent.getStringExtra("GroupName")
 
         firestoreDb = FirebaseFirestore.getInstance()
 
