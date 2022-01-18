@@ -38,7 +38,7 @@ class ProfileFragment : Fragment() {
         // Inflate the layout for this fragment
 
         mAuth = FirebaseAuth.getInstance()
-        mAuth.currentUser
+        mAuth.currentUser!!.uid
         val v = inflater.inflate(R.layout.fragment_profile, container, false)
 
         dbRef.child("Users").addValueEventListener(object :ValueEventListener{
@@ -46,9 +46,13 @@ class ProfileFragment : Fragment() {
                 user = snapshot.child(FirebaseAuth.getInstance().currentUser!!.uid).getValue(User::class.java)
                 val txtname = v.findViewById<TextView>(R.id.nameOfUser)
                 txtname.setText(user?.user_name)
-
+                val txtemail = v.findViewById<TextView>(R.id.emailOfUser)
+                txtemail.setText(user?.user_email)
+                val txttype = v.findViewById<TextView>(R.id.typeOfUser)
+                txttype.setText((user?.user_type).toString().capitalize())
+                val txtstatus = v.findViewById<TextView>(R.id.statusOfUser)
+                txtstatus.setText((user?.vacinated).toString().capitalize())
             }
-
             override fun onCancelled(error: DatabaseError) {
                 TODO("Not yet implemented")
             }
@@ -68,7 +72,12 @@ class ProfileFragment : Fragment() {
         resetPWbtn.setOnClickListener {
             val intent = Intent (getActivity(), ResetPasswordActivity::class.java)
             getActivity()?.startActivity(intent)
+        }
 
+        val editPFbtn = v.findViewById<Button>(R.id.Editprofile)
+        editPFbtn.setOnClickListener {
+            val intent = Intent (getActivity(), ProfileEdit::class.java)
+            getActivity()?.startActivity(intent)
         }
 
         return v
@@ -78,8 +87,6 @@ class ProfileFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-
     }
 
 
