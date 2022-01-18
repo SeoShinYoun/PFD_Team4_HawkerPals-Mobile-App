@@ -45,7 +45,7 @@
             android:layout_marginTop="8dp"
             android:textColor="@color/black"
             android:textStyle="italic"
-            card_view:layout_constraintEnd_toStartOf="@+id/marketplace"
+            card_view:layout_constraintEnd_toStartOf="@+id/details"
             card_view:layout_constraintHorizontal_bias="0.063"
             card_view:layout_constraintStart_toStartOf="parent"
             card_view:layout_constraintTop_toBottomOf="@+id/item_title" />

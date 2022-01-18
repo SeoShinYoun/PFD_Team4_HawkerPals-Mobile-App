@@ -1,17 +1,18 @@
 package com.example.hawkerpals
 
 import android.app.PendingIntent.getActivity
+import android.content.ContentValues.TAG
 import android.content.Context
 import android.content.Intent
 import android.icu.number.NumberFormatter.with
 import android.icu.number.NumberRangeFormatter.with
+import android.os.SystemClock
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.example.hawkerpals.bottomnavbartutorial.fragments.HomeFragment
 import com.google.firebase.auth.AdditionalUserInfo
@@ -21,6 +22,7 @@ import com.google.firebase.database.*
 import com.google.firebase.ktx.Firebase
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.card_layout.view.*
+import kotlin.math.log
 
 //class RecyclerAdapter(val context: Context,val hawkerList: ArrayList<Hawkers>) : RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
 //    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerAdapter.ViewHolder {
@@ -168,6 +170,28 @@ class RecyclerAdapter(val hawkerList:ArrayList<Hawkers>) : RecyclerView.Adapter<
             holder.itemView.context.startActivity(intent)
         }
 
+        //add hawker center to favourites if button clicked from home fragment
+        holder.Favbtn.setOnClickListener{
+            holder.Favbtn.isEnabled = false
+            holder.Favbtn.isClickable = false
+            holder.Favbtn.setImageResource(R.drawable.ic_favorited)
+
+            dbRef.child("Users").get().addOnSuccessListener {
+                user = it.child(FirebaseAuth.getInstance().currentUser!!.uid).getValue(User::class.java)!!
+                if(user.hawker_favourites.isNullOrEmpty() || !user.hawker_favourites.values.contains(currentList.hawker_name)) {
+                    val key =
+                        dbRef.child("Users").child(FirebaseAuth.getInstance().currentUser!!.uid)
+                            .child("hawker_favourites").push().key
+                    val updates = hashMapOf<String, Any>(
+                        "/Users/${FirebaseAuth.getInstance().currentUser!!.uid}/hawker_favourites/$key" to currentList.hawker_name.toString()
+                    )
+                    //Log.e(TAG, "Adding ${currentList.hawker_name} with key $key")
+
+                    dbRef.updateChildren(updates)
+                }
+            }
+        }
+
 //        holder.Chatbtn.setOnClickListener {
 //            val intent = Intent(holder.itemView.context,TrendingChat::class.java)
 //            intent.putExtra("GroupName",currentList.hawker_name)
@@ -189,6 +213,7 @@ class RecyclerAdapter(val hawkerList:ArrayList<Hawkers>) : RecyclerView.Adapter<
         var itemDetail: TextView
         var Chatbtn: Button
         var Marketbtn: Button
+        var Favbtn : ImageButton
 
         init{
             itemImage = itemView.findViewById(R.id.item_image)
@@ -196,6 +221,7 @@ class RecyclerAdapter(val hawkerList:ArrayList<Hawkers>) : RecyclerView.Adapter<
             itemDetail = itemView.findViewById(R.id.item_detail)
             Chatbtn = itemView.findViewById(R.id.chat)
             Marketbtn = itemView.findViewById(R.id.marketplace)
+            Favbtn = itemView.findViewById(R.id.favButton)
         }
 
     }

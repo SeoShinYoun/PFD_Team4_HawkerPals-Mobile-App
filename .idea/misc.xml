@@ -120,6 +120,28 @@
         <entry key="..\:/Users/shiny/AndroidStudioProjects/HawkerPals3/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.3728205128205128" />
         <entry key="..\:/Users/trici/StudioProjects/PFD_Team4_HawkerPals/app/src/main/res/layout/activity_register.xml" value="0.25" />
         <entry key="..\:/Users/trici/StudioProjects/PFD_Team4_HawkerPals/app/src/main/res/layout/fragment_home.xml" value="0.1" />
+        <entry key="..\:/Users/user/StudioProjects/PFD_Team4_HawkerPals/app/src/main/res/drawable/ic_favorite.xml" value="0.24791666666666667" />
+        <entry key="..\:/Users/user/StudioProjects/PFD_Team4_HawkerPals/app/src/main/res/drawable/ic_favorited.xml" value="0.24791666666666667" />
+        <entry key="..\:/Users/user/StudioProjects/PFD_Team4_HawkerPals/app/src/main/res/layout-v31/card_layout.xml" value="0.23489583333333333" />
+        <entry key="..\:/Users/user/StudioProjects/PFD_Team4_HawkerPals/app/src/main/res/layout/activity_forget_password.xml" value="0.2125" />
+        <entry key="..\:/Users/user/StudioProjects/PFD_Team4_HawkerPals/app/src/main/res/layout/activity_home.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/user/StudioProjects/PFD_Team4_HawkerPals/app/src/main/res/layout/activity_login.xml" value="0.2125" />
+        <entry key="..\:/Users/user/StudioProjects/PFD_Team4_HawkerPals/app/src/main/res/layout/activity_main.xml" value="0.2125" />
+        <entry key="..\:/Users/user/StudioProjects/PFD_Team4_HawkerPals/app/src/main/res/layout/activity_marketplace.xml" value="0.20520833333333333" />
+        <entry key="..\:/Users/user/StudioProjects/PFD_Team4_HawkerPals/app/src/main/res/layout/activity_profile_edit.xml" value="0.2125" />
+        <entry key="..\:/Users/user/StudioProjects/PFD_Team4_HawkerPals/app/src/main/res/layout/activity_register.xml" value="0.2125" />
+        <entry key="..\:/Users/user/StudioProjects/PFD_Team4_HawkerPals/app/src/main/res/layout/activity_splash.xml" value="0.2125" />
+        <entry key="..\:/Users/user/StudioProjects/PFD_Team4_HawkerPals/app/src/main/res/layout/activity_trending_chat.xml" value="0.2125" />
+        <entry key="..\:/Users/user/StudioProjects/PFD_Team4_HawkerPals/app/src/main/res/layout/card_layout.xml" value="0.5" />
+        <entry key="..\:/Users/user/StudioProjects/PFD_Team4_HawkerPals/app/src/main/res/layout/favourites_card_layout.xml" value="0.5" />
+        <entry key="..\:/Users/user/StudioProjects/PFD_Team4_HawkerPals/app/src/main/res/layout/fragment_activity.xml" value="0.2125" />
+        <entry key="..\:/Users/user/StudioProjects/PFD_Team4_HawkerPals/app/src/main/res/layout/fragment_favorites.xml" value="0.22" />
+        <entry key="..\:/Users/user/StudioProjects/PFD_Team4_HawkerPals/app/src/main/res/layout/fragment_home.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/user/StudioProjects/PFD_Team4_HawkerPals/app/src/main/res/layout/fragment_profile.xml" value="0.2125" />
+        <entry key="..\:/Users/user/StudioProjects/PFD_Team4_HawkerPals/app/src/main/res/layout/marketcard_layout.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/user/StudioProjects/PFD_Team4_HawkerPals/app/src/main/res/layout/onboarding_item_container.xml" value="0.2125" />
+        <entry key="..\:/Users/user/StudioProjects/PFD_Team4_HawkerPals/app/src/main/res/layout/threadmessagefrom_layout.xml" value="0.2125" />
+        <entry key="..\:/Users/user/StudioProjects/PFD_Team4_HawkerPals/app/src/main/res/layout/threadmessageto_layout.xml" value="0.2125" />
       </map>
     </option>
   </component>

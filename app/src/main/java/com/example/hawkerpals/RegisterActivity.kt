@@ -4,12 +4,9 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
-import android.util.Log
-import android.view.View
 import android.widget.Toast
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
 import com.google.firebase.database.ktx.database
@@ -186,9 +183,7 @@ class RegisterActivity : AppCompatActivity() {
 //    }
 
     private fun saveUser(uid:String,username:String,email:String,vaxxed:Boolean,type:String){
-        val user = User(email,uid,username,type,vaxxed)
+        val user = User(email,uid,username,type,vaxxed, HashMap())
         dbRef.child("Users").child(uid).setValue(user)
-
-
     }
 }
