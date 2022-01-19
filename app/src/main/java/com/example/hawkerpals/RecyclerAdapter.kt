@@ -170,6 +170,16 @@ class RecyclerAdapter(val hawkerList:ArrayList<Hawkers>) : RecyclerView.Adapter<
             holder.itemView.context.startActivity(intent)
         }
 
+
+        dbRef.child("Users").get().addOnSuccessListener {
+            user = it.child(FirebaseAuth.getInstance().currentUser!!.uid).getValue(User::class.java)!!
+            if(user.hawker_favourites.containsValue(currentList.hawker_name)) {
+                holder.Favbtn.isEnabled = false
+                holder.Favbtn.isClickable = false
+                holder.Favbtn.setImageResource(R.drawable.ic_favorited)
+            }
+        }
+
         //add hawker center to favourites if button clicked from home fragment
         holder.Favbtn.setOnClickListener{
             holder.Favbtn.isEnabled = false
