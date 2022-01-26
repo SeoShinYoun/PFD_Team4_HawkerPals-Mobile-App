@@ -53,6 +53,7 @@ class MarketplaceActivity : AppCompatActivity() {
         //new code
         firebaseDb = FirebaseFirestore.getInstance()
 
+
         firebaseDb.collection("users")
             .document(FirebaseAuth.getInstance().currentUser?.uid as String)
             .get()

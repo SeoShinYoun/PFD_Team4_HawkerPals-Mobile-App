@@ -44,6 +44,14 @@ class uploadMarketProduct : AppCompatActivity() {
                 Log.i(TAG,"signed in user: ${signedInUser}")
             }
         btnPickImage.setOnClickListener {
+
+//            firestoreDb.collection("users")
+//                .add(signedInUser!!)
+//                .addOnCompleteListener { postCreationTask ->
+//                    if (!postCreationTask.isSuccessful) {
+//                        Toast.makeText(this, "Unsuccessful", Toast.LENGTH_SHORT).show()
+//                    }
+//                }
             startFileChooser()
         }
 

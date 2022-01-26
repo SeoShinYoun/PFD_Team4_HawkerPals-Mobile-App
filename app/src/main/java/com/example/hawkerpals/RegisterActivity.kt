@@ -5,15 +5,18 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
 import android.widget.Toast
+import com.example.hawkerpals.models.Post
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
 import com.google.firebase.database.ktx.database
 import com.google.firebase.database.ktx.getValue
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_register.*
+import kotlinx.android.synthetic.main.activity_upload_market_product.*
 
 class RegisterActivity : AppCompatActivity() {
 
@@ -23,6 +26,8 @@ class RegisterActivity : AppCompatActivity() {
     val db = Firebase.database("https://hawkerpals-de16f-default-rtdb.asia-southeast1.firebasedatabase.app/")
     val dbRef = db.getReference()
     var user: FirebaseUser? = null
+    var firedb = FirebaseFirestore.getInstance()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -67,6 +72,7 @@ class RegisterActivity : AppCompatActivity() {
                 }
 
                 else ->{
+
                     val email: String = emailInput2.text.toString().trim() { it <= ' '}
                     val password: String = passwordInput2.text.toString().trim() { it <= ' '}
                     val name: String = userNameInput.text.toString().trim() { it <= ' '}
@@ -82,6 +88,10 @@ class RegisterActivity : AppCompatActivity() {
 //                                    val dbRef = db.getReference("user_info")
                                     user = FirebaseAuth.getInstance().currentUser
                                     saveUser(user!!.uid,name,email,vaxxed,type)
+
+                                    firedb.collection("users").document(user!!.uid.toString()).set(com.example.hawkerpals.models.User(username = name))
+
+
 //                                    val user = User(user_email = null, user_id = null, user_name = null, user_type = null, vacinated = null)
 //                                    val availableIDs: MutableList<Int> = mutableListOf()
 //                                    var userKey = "user_"
