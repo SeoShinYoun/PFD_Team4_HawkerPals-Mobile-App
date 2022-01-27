@@ -157,7 +157,8 @@ class HomeFragment : Fragment() {
         for (Hawker in hawkerList)
         {
             if (Hawker.hawker_name?.toLowerCase()?.contains(newText.toLowerCase()) == true || Hawker.hawker_address?.toLowerCase()
-                    ?.contains(newText.toLowerCase()) == true)
+                    ?.contains(newText.toLowerCase()) == true || Hawker.hawker_locate?.toLowerCase()?.contains(newText.toLowerCase()) == true
+            )
             {
                 myList.add(Hawker)
             }
