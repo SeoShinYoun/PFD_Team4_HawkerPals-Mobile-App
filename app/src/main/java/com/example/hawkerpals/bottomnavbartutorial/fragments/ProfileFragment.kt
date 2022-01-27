@@ -1,5 +1,6 @@
 package com.example.hawkerpals.bottomnavbartutorial.fragments
 
+import android.content.ContentValues.TAG
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -9,17 +10,21 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import com.example.hawkerpals.*
 import com.example.hawkerpals.R
 import com.google.android.gms.tasks.OnCompleteListener
+import com.google.android.material.imageview.ShapeableImageView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.card_layout.view.*
 import kotlinx.android.synthetic.main.fragment_profile.*
 
 
@@ -52,13 +57,17 @@ class ProfileFragment : Fragment() {
                 txttype.setText((user?.user_type).toString().capitalize())
                 val txtstatus = v.findViewById<TextView>(R.id.statusOfUser)
                 txtstatus.setText((user?.vacinated).toString().capitalize())
+
+                if (user?.user_profilepic != null){
+                    val profilepic = v.findViewById<ShapeableImageView>(R.id.profileImage)
+                    Picasso.get().load(user?.user_profilepic).fit().into(profilepic)
+                }
             }
             override fun onCancelled(error: DatabaseError) {
                 TODO("Not yet implemented")
             }
 
         })
-
 
         val btn = v.findViewById<Button>(R.id.logout)
         btn.setOnClickListener{

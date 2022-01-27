@@ -6,7 +6,8 @@ data class User(
     var user_name: String? = null,
     var user_type: String? = null,
     var vacinated: Boolean? = null,
-    var hawker_favourites: MutableMap<String, String> = HashMap()
+    var hawker_favourites: MutableMap<String, String> = HashMap(),
+    var user_profilepic: String? = null
 )
 
 

@@ -193,7 +193,7 @@ class RegisterActivity : AppCompatActivity() {
 //    }
 
     private fun saveUser(uid:String,username:String,email:String,vaxxed:Boolean,type:String){
-        val user = User(email,uid,username,type,vaxxed, HashMap())
+        val user = User(email,uid,username,type,vaxxed, HashMap(), null)
         dbRef.child("Users").child(uid).setValue(user)
     }
 }
