@@ -19,7 +19,8 @@ import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.fragment_home.*
-import java.util.ArrayList
+import androidx.appcompat.widget.SearchView
+import kotlin.collections.ArrayList
 
 //class HomeFragment : Fragment() {
 //    private lateinit var CardRecyclerView: RecyclerView
@@ -87,13 +88,14 @@ class HomeFragment : Fragment() {
 
     private lateinit var hawkerRecyclerView: RecyclerView
     private lateinit var hawkerList: ArrayList<Hawkers>
-
+    lateinit var searchView: SearchView
 
     val db = Firebase.database("https://hawkerpals-de16f-default-rtdb.asia-southeast1.firebasedatabase.app/")
     val dbRef = db.getReference().child("hawkerCenter_info")
 
 
     override fun onCreateView(
+
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
@@ -105,8 +107,8 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(itemView: View, savedInstanceState: Bundle?){
         super.onViewCreated(itemView, savedInstanceState)
-
         hawkerRecyclerView = itemView.findViewById(R.id.recycler_view)
+        searchView = itemView.findViewById(R.id.searchView)
         hawkerRecyclerView.layoutManager = LinearLayoutManager(context)
 
         hawkerRecyclerView.setHasFixedSize(true)
@@ -125,11 +127,40 @@ class HomeFragment : Fragment() {
                     }
                     hawkerRecyclerView.adapter = RecyclerAdapter(hawkerList)
                 }
+
+
             }
 
             override fun onCancelled(error: DatabaseError) {
                 TODO("Not yet implemented")
             }
         })
+
+        if(searchView!= null)
+        {
+            searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
+                override fun onQueryTextSubmit(query: String): Boolean {
+                    return false
+                }
+
+                override fun onQueryTextChange(newText: String): Boolean {
+                    search(newText)
+                    return true
+                }
+            })
+        }
+    }
+
+    private fun search(newText: String)
+    {
+        val myList = ArrayList<Hawkers>()
+        for (Hawker in hawkerList)
+        {
+            if (Hawker.hawker_name?.toLowerCase()?.contains(newText.toLowerCase()) == true)
+            {
+                myList.add(Hawker)
+            }
+        }
+        hawkerRecyclerView.adapter = RecyclerAdapter(myList)
     }
 }
