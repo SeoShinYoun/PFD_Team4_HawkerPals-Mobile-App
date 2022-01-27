@@ -156,7 +156,8 @@ class HomeFragment : Fragment() {
         val myList = ArrayList<Hawkers>()
         for (Hawker in hawkerList)
         {
-            if (Hawker.hawker_name?.toLowerCase()?.contains(newText.toLowerCase()) == true)
+            if (Hawker.hawker_name?.toLowerCase()?.contains(newText.toLowerCase()) == true || Hawker.hawker_address?.toLowerCase()
+                    ?.contains(newText.toLowerCase()) == true)
             {
                 myList.add(Hawker)
             }
