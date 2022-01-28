@@ -28,11 +28,11 @@ class ProfileEdit : AppCompatActivity() {
     private lateinit var binding: ActivityProfileEditBinding
 
     private var signedInUser: User? = null
-    lateinit var filepath: Uri
+    private var filepath: Uri? = null
     private lateinit var firestoreDb: FirebaseFirestore
     private lateinit var storageReference: StorageReference
     private var dbRef = FirebaseDatabase.getInstance("https://hawkerpals-de16f-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference()
-
+    private var updateRealtimeDb = hashMapOf<String, Any>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityProfileEditBinding.inflate(layoutInflater)
@@ -57,51 +57,96 @@ class ProfileEdit : AppCompatActivity() {
             uploadFile()
         }
     }
+
     private fun uploadFile() {
-        val intent = getIntent()
-        val groupname = intent.getStringExtra("GroupName")
-        if (filepath == null){
-            Toast.makeText(this,"No photo", Toast.LENGTH_SHORT).show()
+
+
+        if (filepath == null && editName.text.isBlank()) {
+            Toast.makeText(this,"Update not successful", Toast.LENGTH_SHORT).show()
             return
         }
-        if(editName.text.isBlank()){
-            Toast.makeText(this,"Username cannot be empty", Toast.LENGTH_SHORT).show()
-            return
-        }
+
         if(signedInUser == null){
             Toast.makeText(this,"No user signed in", Toast.LENGTH_SHORT).show()
             return
         }
         uploadBtn.isEnabled = false
 
-        var photoReference =storageReference.child("profile/${System.currentTimeMillis()}-photo.jpg")
-        photoReference.putFile(filepath)
-            .continueWithTask { photoUploadTask ->
-                photoReference.downloadUrl
-            }.continueWithTask { downloadUrlTask ->
-                //Update username in firestore
-                firestoreDb
-                    .collection("users")
-                    .document(FirebaseAuth.getInstance().currentUser?.uid as String)
-                    .update("username",editName.text.toString())
-                //Update username and profile pic in realtime database
-                val updateRealtimeDb = hashMapOf<String, Any>(
-                    "/Users/${FirebaseAuth.getInstance().currentUser?.uid.toString()}/user_name" to editName.text.toString(),
-                    "/Users/${FirebaseAuth.getInstance().currentUser?.uid.toString()}/user_profilepic" to downloadUrlTask.result.toString()
-                )
-                dbRef.updateChildren(updateRealtimeDb)
-            }.addOnCompleteListener{profileEditTask ->
-                uploadBtn.isEnabled = true
-                if(!profileEditTask.isSuccessful){
-                    Toast.makeText(this,"Unsuccessful", Toast.LENGTH_SHORT).show()
+        if (editName.text.isNotBlank() && filepath == null){
+            firestoreDb
+                .collection("users")
+                .document(FirebaseAuth.getInstance().currentUser?.uid as String)
+                .update("username",editName.text.toString())
+            updateRealtimeDb = hashMapOf<String, Any>(
+                "/Users/${FirebaseAuth.getInstance().currentUser?.uid.toString()}/user_name" to editName.text.toString(),
+            )
+            dbRef.updateChildren(updateRealtimeDb)
+            uploadBtn.isEnabled = true
+            editName.text.clear()
+            Toast.makeText(this,"Success", Toast.LENGTH_SHORT).show()
+            val profileIntent = Intent(this,HomeActivity::class.java)
+            startActivity(profileIntent)
+            finish()
+        }
+
+        else if (filepath != null && editName.text.isBlank()){
+            var photoReference =storageReference.child("profile/${System.currentTimeMillis()}-photo.jpg")
+            photoReference.putFile(filepath!!)
+                .continueWithTask { photoUploadTask ->
+                    photoReference.downloadUrl
+                }.continueWithTask { downloadUrlTask ->
+                    //Update username in firestore
+
+                    if (filepath != null){
+                        updateRealtimeDb = hashMapOf<String, Any>(
+                            "/Users/${FirebaseAuth.getInstance().currentUser?.uid.toString()}/user_profilepic" to downloadUrlTask.result.toString()
+                        )
+                    }
+
+                    dbRef.updateChildren(updateRealtimeDb)
+                }.addOnCompleteListener{profileEditTask ->
+                    uploadBtn.isEnabled = true
+                    if(!profileEditTask.isSuccessful){
+                        Toast.makeText(this,"Unsuccessful", Toast.LENGTH_SHORT).show()
+                    }
+                    editName.text.clear()
+                    imageView.setImageResource(0)
+                    Toast.makeText(this,"Success", Toast.LENGTH_SHORT).show()
+                    val profileIntent = Intent(this,HomeActivity::class.java)
+                    startActivity(profileIntent)
+                    finish()
                 }
-                editName.text.clear()
-                imageView.setImageResource(0)
-                Toast.makeText(this,"Success", Toast.LENGTH_SHORT).show()
-                val profileIntent = Intent(this,HomeActivity::class.java)
-                startActivity(profileIntent)
-                finish()
-            }
+        }
+        else{
+            var photoReference =storageReference.child("profile/${System.currentTimeMillis()}-photo.jpg")
+            photoReference.putFile(filepath!!)
+                .continueWithTask { photoUploadTask ->
+                    photoReference.downloadUrl
+                }.continueWithTask { downloadUrlTask ->
+                    firestoreDb
+                        .collection("users")
+                        .document(FirebaseAuth.getInstance().currentUser?.uid as String)
+                        .update("username",editName.text.toString())
+                    //Update username and profile pic in realtime database
+
+                    val updateRealtimeDb = hashMapOf<String, Any>(
+                        "/Users/${FirebaseAuth.getInstance().currentUser?.uid.toString()}/user_name" to editName.text.toString(),
+                        "/Users/${FirebaseAuth.getInstance().currentUser?.uid.toString()}/user_profilepic" to downloadUrlTask.result.toString()
+                    )
+                    dbRef.updateChildren(updateRealtimeDb)
+                }.addOnCompleteListener{profileEditTask ->
+                    uploadBtn.isEnabled = true
+                    if(!profileEditTask.isSuccessful){
+                        Toast.makeText(this,"Unsuccessful", Toast.LENGTH_SHORT).show()
+                    }
+                    editName.text.clear()
+                    imageView.setImageResource(0)
+                    Toast.makeText(this,"Success", Toast.LENGTH_SHORT).show()
+                    val profileIntent = Intent(this,HomeActivity::class.java)
+                    startActivity(profileIntent)
+                    finish()
+                }
+        }
     }
 
     private fun startFileChooser() {
