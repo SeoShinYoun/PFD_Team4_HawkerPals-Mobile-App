@@ -116,25 +116,8 @@ class RecyclerAdapter(val hawkerList:ArrayList<Hawkers>) : RecyclerView.Adapter<
     private lateinit var mAuth: FirebaseAuth
     var db = FirebaseDatabase.getInstance("https://hawkerpals-de16f-default-rtdb.asia-southeast1.firebasedatabase.app/")
     val dbRef = db.getReference()
-//    private var titles = arrayOf("Telok Ayer Market", "Tiong Bahru Market", "Maxwell Food Centre", "Chinatown Complex",
-//        "Golden Mile Centre", "ABC Brickworks", "Bedok Food Centre", "Tekka Food Centre")
-//
-//    private var details = arrayOf("18 Raffles Quay, 048582", "30 Seng Poh Rd, 168898","1 Kadayanallur St, 069184","335 Smith St, 050335",
-//        "505 Beach Rd, 199583","6 Jalan Bukit Merah, 150006","1 Bedok Rd, 469572","665 Buffalo Rd, 210665")
-
-//    private val images = intArrayOf(R.drawable.telok_ayer_market_ic, R.drawable.tiong_bahru_ic, R.drawable.maxwell_ic,R.drawable.chinatown_complex_ic,
-//        R.drawable.goldenmile_ic,R.drawable.abc_brickworks_ic,R.drawable.bedok_food_ic,R.drawable.tekka_food_centre)
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerAdapter.ViewHolder {
         val v = LayoutInflater.from(parent.context).inflate(R.layout.card_layout, parent, false)
-//        val btn = v.findViewById<Button>(R.id.chat)
-//        btn.setOnClickListener{
-//            val intent = Intent (v.context, TrendingChat::class.java)
-//            intent.putExtra("GroupName",hawkerList[])
-//            intent.putExtra("uid",FirebaseAuth.getInstance().currentUser?.uid)
-//            v.context?.startActivity(intent)
-//
-//        }
         return ViewHolder(v)
     }
 

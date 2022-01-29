@@ -13,9 +13,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.HawkerPals">
         <activity
-            android:name=".ProfileEdit"
-            android:windowSoftInputMode="adjustPan"
+            android:name=".uploadReviewActivity"
             android:exported="false" />
+        <activity
+            android:name=".ReviewActivity"
+            android:exported="false" />
+        <activity
+            android:name=".models.ReviewActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ProfileEdit"
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".uploadMarketProduct"
             android:exported="false" />
@@ -39,8 +48,8 @@
             android:exported="false" />
         <activity
             android:name=".HomeActivity"
-            android:windowSoftInputMode="adjustPan"
-            android:exported="false" />
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".MainActivity"
             android:exported="true">

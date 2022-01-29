@@ -92,41 +92,6 @@ class RegisterActivity : AppCompatActivity() {
                                     firedb.collection("users").document(user!!.uid.toString()).set(com.example.hawkerpals.models.User(username = name))
 
 
-//                                    val user = User(user_email = null, user_id = null, user_name = null, user_type = null, vacinated = null)
-//                                    val availableIDs: MutableList<Int> = mutableListOf()
-//                                    var userKey = "user_"
-//                                    for(x in (1..9999)){
-//                                        availableIDs.add(x)
-//                                    }
-//
-//                                    dbRef.get().addOnSuccessListener {
-//                                        for (users in it.children){
-//                                            for (data in users.children){
-//                                                if(data.key == "user_id"){
-//                                                    availableIDs.remove(data.value.toString().toInt())
-//                                                }
-//                                            }
-//                                        }
-//                                        user.user_email = email
-//                                        user.user_name = name
-//                                        user.vacinated = vaxxed
-//                                        if(type=="customer"){
-//                                            user.user_type = type
-//                                            userKey += "c"
-//                                        }
-//                                        else if (type == "hawker"){
-//                                            user.user_type = type
-//                                            userKey += "h"
-//                                        }
-//                                        //After adding more input boxes(eg full name, userType, etc) to the registration screen, data can be assigned right after this line
-//
-//                                        user.user_id = turnIntTo4Char(availableIDs.elementAt(0))
-//                                        userKey += user.user_id
-//                                        dbRef.child(userKey).setValue(user)
-//                                    }.addOnFailureListener{
-//                                        Log.e("firebase", "Error getting data", it)
-//                                    }
-                                    //[END of writing to Firebase Realtime Database]
 
                                     Toast.makeText(
                                         this@RegisterActivity,

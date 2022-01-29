@@ -3,12 +3,28 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/PFD/PFD_Team4_HawkerPals/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.25833333333333336" />
+        <entry key="..\:/PFD/PFD_Team4_HawkerPals/app/src/main/res/drawable/custom_input.xml" value="0.25833333333333336" />
         <entry key="..\:/PFD/PFD_Team4_HawkerPals/app/src/main/res/drawable/dropshadow.xml" value="0.25833333333333336" />
-        <entry key="..\:/PFD/PFD_Team4_HawkerPals/app/src/main/res/layout/activity_home.xml" value="0.1852355072463768" />
+        <entry key="..\:/PFD/PFD_Team4_HawkerPals/app/src/main/res/drawable/ic_favorite.xml" value="0.25833333333333336" />
+        <entry key="..\:/PFD/PFD_Team4_HawkerPals/app/src/main/res/drawable/ic_favorited.xml" value="0.25833333333333336" />
+        <entry key="..\:/PFD/PFD_Team4_HawkerPals/app/src/main/res/drawable/ic_home.xml" value="0.25833333333333336" />
+        <entry key="..\:/PFD/PFD_Team4_HawkerPals/app/src/main/res/drawable/ic_notifications.xml" value="0.25833333333333336" />
+        <entry key="..\:/PFD/PFD_Team4_HawkerPals/app/src/main/res/drawable/indicator_active_background.xml" value="0.25833333333333336" />
+        <entry key="..\:/PFD/PFD_Team4_HawkerPals/app/src/main/res/drawable/rounded_edittext_register_login.xml" value="0.25833333333333336" />
+        <entry key="..\:/PFD/PFD_Team4_HawkerPals/app/src/main/res/drawable/shapre_rect01.xml" value="0.25833333333333336" />
+        <entry key="..\:/PFD/PFD_Team4_HawkerPals/app/src/main/res/drawable/view_pager_background.xml" value="0.25833333333333336" />
+        <entry key="..\:/PFD/PFD_Team4_HawkerPals/app/src/main/res/layout/activity_home.xml" value="0.4" />
         <entry key="..\:/PFD/PFD_Team4_HawkerPals/app/src/main/res/layout/activity_login.xml" value="0.1852355072463768" />
+        <entry key="..\:/PFD/PFD_Team4_HawkerPals/app/src/main/res/layout/activity_main.xml" value="0.17255434782608695" />
+        <entry key="..\:/PFD/PFD_Team4_HawkerPals/app/src/main/res/layout/activity_marketplace.xml" value="0.1793478260869565" />
+        <entry key="..\:/PFD/PFD_Team4_HawkerPals/app/src/main/res/layout/activity_register.xml" value="0.17255434782608695" />
+        <entry key="..\:/PFD/PFD_Team4_HawkerPals/app/src/main/res/layout/activity_reset_password.xml" value="0.1793478260869565" />
+        <entry key="..\:/PFD/PFD_Team4_HawkerPals/app/src/main/res/layout/activity_review.xml" value="0.2" />
         <entry key="..\:/PFD/PFD_Team4_HawkerPals/app/src/main/res/layout/activity_splash.xml" value="0.1852355072463768" />
         <entry key="..\:/PFD/PFD_Team4_HawkerPals/app/src/main/res/layout/activity_trending_chat.xml" value="0.1852355072463768" />
         <entry key="..\:/PFD/PFD_Team4_HawkerPals/app/src/main/res/layout/activity_upload_market_product.xml" value="0.1852355072463768" />
+        <entry key="..\:/PFD/PFD_Team4_HawkerPals/app/src/main/res/layout/activity_upload_review.xml" value="0.17255434782608695" />
         <entry key="..\:/PFD/PFD_Team4_HawkerPals/app/src/main/res/layout/favourites_card_layout.xml" value="0.1852355072463768" />
         <entry key="..\:/PFD/PFD_Team4_HawkerPals/app/src/main/res/layout/fragment_activity.xml" value="0.1852355072463768" />
         <entry key="..\:/PFD/PFD_Team4_HawkerPals/app/src/main/res/layout/fragment_favorites.xml" value="0.1852355072463768" />
@@ -16,6 +32,7 @@
         <entry key="..\:/PFD/PFD_Team4_HawkerPals/app/src/main/res/layout/fragment_profile.xml" value="0.1852355072463768" />
         <entry key="..\:/PFD/PFD_Team4_HawkerPals/app/src/main/res/layout/marketcard_layout.xml" value="0.1852355072463768" />
         <entry key="..\:/PFD/PFD_Team4_HawkerPals/app/src/main/res/layout/onboarding_item_container.xml" value="0.1852355072463768" />
+        <entry key="..\:/PFD/PFD_Team4_HawkerPals/app/src/main/res/layout/reviewcard_layout.xml" value="0.17255434782608695" />
         <entry key="..\:/PFD/PFD_Team4_HawkerPals/app/src/main/res/layout/threadmessagefrom_layout.xml" value="0.1852355072463768" />
         <entry key="..\:/PFD/PFD_Team4_HawkerPals/app/src/main/res/layout/threadmessageto_layout.xml" value="0.1852355072463768" />
         <entry key="..\:/PFD/PFD_Team4_HawkerPals/app/src/main/res/menu/nav_menu.xml" value="0.2421875" />
@@ -172,5 +189,12 @@
   </component>
   <component name="SuppressKotlinCodeStyleNotification">
     <option name="disableForAll" value="true" />
+  </component>
+  <component name="VisualizationToolProject">
+    <option name="state">
+      <ProjectState>
+        <option name="scale" value="0.17255434782608695" />
+      </ProjectState>
+    </option>
   </component>
 </project>
