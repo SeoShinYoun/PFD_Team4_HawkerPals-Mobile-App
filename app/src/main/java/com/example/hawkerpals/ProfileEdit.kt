@@ -9,14 +9,17 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
 import android.widget.Toast
+import androidx.core.net.toUri
 import com.example.hawkerpals.databinding.ActivityProfileEditBinding
 import com.example.hawkerpals.models.Post
 import com.example.hawkerpals.models.User
+import com.google.android.material.imageview.ShapeableImageView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_profile_edit.*
 import kotlinx.android.synthetic.main.activity_upload_market_product.*
 import kotlinx.android.synthetic.main.activity_upload_market_product.btnPickImage
@@ -33,6 +36,8 @@ class ProfileEdit : AppCompatActivity() {
     private lateinit var storageReference: StorageReference
     private var dbRef = FirebaseDatabase.getInstance("https://hawkerpals-de16f-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference()
     private var updateRealtimeDb = hashMapOf<String, Any>()
+    private lateinit var user: com.example.hawkerpals.User
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityProfileEditBinding.inflate(layoutInflater)
@@ -49,6 +54,25 @@ class ProfileEdit : AppCompatActivity() {
                 signedInUser = userSnapshot.toObject(User::class.java)
                 Log.i(ContentValues.TAG,"signed in user: ${signedInUser}")
             }
+
+
+
+        dbRef.child("Users").get().addOnSuccessListener {
+            user = it.child(FirebaseAuth.getInstance().currentUser!!.uid).getValue(com.example.hawkerpals.User::class.java)!!
+            if (user.user_profilepic != null){
+                val profilepic = binding.imageView
+                Picasso.get()
+                    .load(user.user_profilepic)
+                    .fit()
+                    .centerCrop()
+                    .into(binding.imageView)
+            }
+            else{
+                binding.imageView.setImageResource(R.drawable.ic_person_gray)
+            }
+        }
+
+
         btnPickImage.setOnClickListener {
             startFileChooser()
         }
@@ -95,8 +119,7 @@ class ProfileEdit : AppCompatActivity() {
                 .continueWithTask { photoUploadTask ->
                     photoReference.downloadUrl
                 }.continueWithTask { downloadUrlTask ->
-                    //Update username in firestore
-
+                    //Update profile pic in realtime database
                     if (filepath != null){
                         updateRealtimeDb = hashMapOf<String, Any>(
                             "/Users/${FirebaseAuth.getInstance().currentUser?.uid.toString()}/user_profilepic" to downloadUrlTask.result.toString()
