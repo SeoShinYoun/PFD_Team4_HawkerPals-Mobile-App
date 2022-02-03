@@ -26,7 +26,7 @@ class HomeActivity : AppCompatActivity() {
 
         val homeFragment = HomeFragment()
         val favoritesFragment = FavoritesFragment()
-
+        val notificationFragment = ActivityFragment()
         val profileFragment = ProfileFragment()
 
         makeCurrentFragment(homeFragment)
@@ -35,6 +35,7 @@ class HomeActivity : AppCompatActivity() {
             when (it.itemId){
                 R.id.ic_home -> makeCurrentFragment(homeFragment)
                 R.id.ic_favorite -> makeCurrentFragment(favoritesFragment)
+                R.id.ic_notifications -> makeCurrentFragment(notificationFragment)
                 R.id.ic_person -> makeCurrentFragment(profileFragment)
             }
             true
